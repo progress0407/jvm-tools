@@ -1,36 +1,60 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id 'org.springframework.boot' version '3.1.1'
-	id 'io.spring.dependency-management' version '1.1.0'
-	id 'org.jetbrains.kotlin.jvm' version '1.8.22'
-	id 'org.jetbrains.kotlin.plugin.spring' version '1.8.22'
+    id 'org.springframework.boot' version '3.1.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.22'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.8.22'
 }
 
-group = 'philo'
-version = '0.0.1-SNAPSHOT'
+allprojects {
+    group = 'philo'
+    version = '0.0.1-SNAPSHOT'
 
-java {
-	sourceCompatibility = '17'
+    java {
+        sourceCompatibility = '17'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(KotlinCompile) {
+        kotlinOptions {
+            freeCompilerArgs += '-Xjsr305=strict'
+            jvmTarget = '17'
+        }
+    }
 }
 
-repositories {
-	mavenCentral()
-}
+subprojects {
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.jetbrains.kotlin:kotlin-reflect'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
+    apply plugin: 'java'
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
 
-tasks.withType(KotlinCompile) {
-	kotlinOptions {
-		freeCompilerArgs += '-Xjsr305=strict'
-		jvmTarget = '17'
-	}
+    dependencies {
+        // Kotlin
+        implementation 'org.jetbrains.kotlin:kotlin-reflect'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+        // kotlin logging
+        implementation 'io.github.microutils:kotlin-logging:3.0.5'
+
+        // Spring
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        // Spring Test
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // JVM Test
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
