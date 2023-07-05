@@ -1,3 +1,7 @@
+### Temporary Files ###
+lab/temp/**
+
+
 ### Compiled class file ###
 *.class
 
