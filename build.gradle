@@ -11,19 +11,8 @@ allprojects {
     group = 'philo'
     version = '0.0.1-SNAPSHOT'
 
-    java {
-        sourceCompatibility = '17'
-    }
-
     repositories {
         mavenCentral()
-    }
-
-    tasks.withType(KotlinCompile) {
-        kotlinOptions {
-            freeCompilerArgs += '-Xjsr305=strict'
-            jvmTarget = '17'
-        }
     }
 }
 
@@ -34,6 +23,17 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.jetbrains.kotlin.plugin.spring'
+
+    java {
+        sourceCompatibility = '17'
+    }
+
+    tasks.withType(KotlinCompile) {
+        kotlinOptions {
+            freeCompilerArgs += '-Xjsr305=strict'
+            jvmTarget = '17'
+        }
+    }
 
     dependencies {
         // Kotlin
