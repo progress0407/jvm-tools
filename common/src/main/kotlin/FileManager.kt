@@ -1,40 +1,31 @@
-import mu.KLogger
-import mu.KotlinLogging
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
-import java.nio.file.Files
-import java.nio.file.Path
+import java.io.File
+import java.nio.file.Paths
 
-class FileManager {
+class FileManager : IOManager() {
 
-    private val log: KLogger = KotlinLogging.logger {}
+    fun saveFile() {
 
-    fun saveObject(fullPath: Path, dto: Any) {
-        try {
-            createPathIfNotExist(fullPath)
-            writeFile(fullPath, dto)
-            log.info { "save object success fullPath: $fullPath" }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val sqlFileName = "sample.sql"
+        val fullPath = Paths.get("sql-generator", "sql", sqlFileName)
+        createPathIfNotExist(fullPath)
+
+        val venueId = 20002
+        val seatTypes = listOf("VIP", "Regular", "Economy")
+        val seatNumbers = listOf("A1", "A2", "A3")
+        val data = mutableListOf<String>()
+
+        for (i in seatNumbers.indices) {
+            val seatId = 22000 + (i + 1)
+            val seatNumber = seatNumbers[i]
+            val seatType = seatTypes[i]
+            data.add("($venueId, $seatId, '$seatNumber', '$seatType', now(), now())")
         }
-    }
 
-    fun loadObject(fullPath: Path) {
-        try {
-            val loadObject = ObjectInputStream(FileInputStream(fullPath.toFile())).use { it.readObject() }
-            log.info { "load object = $loadObject" }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+        val sqlString = """
+        insert into venue_seat (venue_id, id, seat_number, seat_type, created_at, updated_at)
+        values ${data.joinToString(",\n")};
+    """.trimIndent()
 
-    private fun createPathIfNotExist(fullPath: Path) {
-        Files.createDirectories(fullPath.parent) // Direcotry의 경우 이미 존재하더라도 예외 발생 X
-    }
-
-    private fun writeFile(fullPath: Path, dto: Any) {
-        ObjectOutputStream(FileOutputStream(fullPath.toFile())).use { it.writeObject(dto) }
+        File(fullPath.toUri()).writeText(sqlString)
     }
 }

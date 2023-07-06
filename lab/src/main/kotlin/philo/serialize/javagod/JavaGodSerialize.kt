@@ -1,8 +1,6 @@
 package philo.serialize.javagod
 
-import FileManager
-import kotlin.io.path.Path
-import kotlin.io.path.absolute
+import ObjectManager
 
 /**
  * 자바의 신 Serialize 실습
@@ -10,15 +8,14 @@ import kotlin.io.path.absolute
 class JavaGodSerialize
 
 fun main() {
-    val fileManger = FileManager()
-    val serialDTO = SerialDTO("secret id 0101", "해리포터", 1, true, 1000)
-    val pathToSave = getPathToSave()
+    val fileManger = ObjectManager()
+    val objectToSave = SerialDTO("secret id 0101", "해리포터", 1, true, 1000)
 
-//    fileManger.saveObject(pathToSave, serialDTO)
-    fileManger.loadObject(pathToSave)
+    fileManger.saveObject(objectToSave, "lab", "temp", "serialDTO.txt")
+    fileManger.loadObject("lab", "temp", "serialDTO.txt")
 }
 
-private fun getPathToSave() = Path("lab", "temp", "serialDTO.txt").absolute()
+
 
 
 
