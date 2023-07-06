@@ -1,5 +1,6 @@
 ### Temporary Files ###
 lab/temp/**
+sql-generator/sql/**
 
 
 ### Compiled class file ###
