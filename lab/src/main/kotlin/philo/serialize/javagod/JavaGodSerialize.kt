@@ -10,7 +10,7 @@ class JavaGodSerialize
 
 fun main() {
     val fileManger = FileManager()
-    val serialDTO = SerialDTO("해리포터", 1, true, 1000)
+    val serialDTO = SerialDTO("secret id 0101", "해리포터", 1, true, 1000)
     val pathToSave = getPathToSave()
 
 //    fileManger.saveObject(pathToSave, serialDTO)
