@@ -1,3 +1,5 @@
+package philo.io
+
 import mu.KLogger
 import mu.KotlinLogging
 import java.io.FileOutputStream
@@ -11,7 +13,7 @@ abstract class IOManager <T> {
 
     protected val log: KLogger = KotlinLogging.logger {}
 
-    abstract fun save(content: T, basePath: String, vararg subPath: String)
+    abstract fun save(content: T, basePath: String, vararg subPaths: String)
 
     protected fun createPathIfNotExist(fullPath: Path) {
         Files.createDirectories(fullPath.parent) // Direcotry의 경우 이미 존재하더라도 예외 발생 X

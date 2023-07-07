@@ -1,15 +1,16 @@
+package philo.io
+
 import java.io.FileInputStream
 import java.io.ObjectInputStream
-import java.io.Serializable
 import java.nio.file.Path
 
-class ObjectIOManager : IOManager<Serializable>() {
+class ObjectIOManager : IOManager<Any>() {
 
-    override fun save(obj: Serializable, basePath: String, vararg subPaths: String) {
+    override fun save(content: Any, basePath: String, vararg subPaths: String) {
         try {
             val fullPath = convertPath(basePath, *subPaths)
             createPathIfNotExist(fullPath)
-            writeFile(fullPath, obj)
+            writeFile(fullPath, content)
             log.info { "save object success fullPath: $fullPath" }
         } catch (e: Exception) {
             e.printStackTrace()

@@ -1,5 +1,5 @@
 ### Temporary Files ###
-lab/temp/**
+*/temp/**
 sql-generator/sql/**
 
 
