@@ -1,14 +1,13 @@
 import java.io.FileInputStream
 import java.io.ObjectInputStream
+import java.io.Serializable
 import java.nio.file.Path
-import kotlin.io.path.Path
-import kotlin.io.path.absolute
 
-class ObjectManager : IOManager() {
+class ObjectIOManager : IOManager<Serializable>() {
 
-    fun saveObject(obj: Any, basePath: String, vararg subPaths: String) {
+    override fun save(obj: Serializable, basePath: String, vararg subPaths: String) {
         try {
-            val fullPath = getPath(basePath, *subPaths)
+            val fullPath = convertPath(basePath, *subPaths)
             createPathIfNotExist(fullPath)
             writeFile(fullPath, obj)
             log.info { "save object success fullPath: $fullPath" }
@@ -29,7 +28,7 @@ class ObjectManager : IOManager() {
 
     fun loadObject(basePath: String, vararg subPaths: String) {
         try {
-            val fullPath = getPath(basePath, *subPaths)
+            val fullPath = convertPath(basePath, *subPaths)
             val loadObject = ObjectInputStream(FileInputStream(fullPath.toFile())).use { it.readObject() }
             log.info { "load object = $loadObject" }
         } catch (e: Exception) {
@@ -46,6 +45,4 @@ class ObjectManager : IOManager() {
             e.printStackTrace()
         }
     }
-
-    private fun getPath(basePath: String, vararg subPaths: String) = Path(basePath, *subPaths).absolute()
 }
