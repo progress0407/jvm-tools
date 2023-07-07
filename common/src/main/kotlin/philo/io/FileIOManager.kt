@@ -1,5 +1,6 @@
 package philo.io
 
+import philo.log.infoGreen
 import java.io.File
 
 class FileIOManager : IOManager<String>() {
@@ -14,7 +15,7 @@ class FileIOManager : IOManager<String>() {
 
         File(fullPath.toUri()).writeText(content)
 
-        log.info { "File Saved Successfully !! $fullPath" }
+        log.infoGreen { "File Saved Successfully !! $fullPath" }
     }
 
     fun load(basePath: String, vararg subPath: String): String {
