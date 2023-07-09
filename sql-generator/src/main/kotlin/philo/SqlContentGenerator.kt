@@ -25,7 +25,7 @@ class SqlContentGenerator {
         }
 
         return """
-        insert into venue_seat (venue_id, id, seat_number, seat_type, created_at, updated_at)
+        insert into venue_seat (venue_id, id, seat_number, seat_type, created_at, updated_at 
         values ${data.joinToString(",\n")};
         """.trimIndent()
     }
@@ -36,11 +36,13 @@ class SqlContentGenerator {
         val endSeatNumber = vipSeatNumber + generalSeatNumber
 
         for (i in 1..vipSeatNumber) {
-            record.add(formatVenueSeatValue(venueId, "VIP", i, startSeatPkNumber))
+            val seatId = calcSeatId(startSeatPkNumber, i)
+            record.add("($venueId, $seatId, 'A${i}', '${"VIP"}', now(), now())")
         }
 
         for (i in vipSeatNumber + 1..endSeatNumber) {
-            record.add(formatVenueSeatValue(venueId, "GENERAL", i, startSeatPkNumber))
+            val seatId = calcSeatId(startSeatPkNumber, i)
+            record.add("($venueId, $seatId, 'A${i}', '${"GENERAL"}', now(), now())")
         }
 
         val values = record.joinToString(",\n")
@@ -48,23 +50,11 @@ class SqlContentGenerator {
         val sql = """
             insert into venue_seat (venue_id, id, seat_number, seat_type, created_at, updated_at)
             values $values;
-            """.trimMargin()
+            """.trim()
 
-        log.infoGreen {"SQL Generated Successfully !!"}
+        log.infoGreen { "SQL Generated Successfully !!" }
 
         return sql
-    }
-
-    private fun formatVenueSeatValue(
-        venueId: Int,
-        venueType: String,
-        currentIndex: Int,
-        startSeatNumber: Int
-    ): String {
-
-        val seatId = calcSeatId(startSeatNumber, currentIndex)
-
-        return "($venueId, $seatId, 'A${currentIndex}', '$venueType', now(), now())"
     }
 
     private fun calcSeatId(startSeatNumber: Int, currentIndex: Int) = startSeatNumber - 1 + currentIndex
