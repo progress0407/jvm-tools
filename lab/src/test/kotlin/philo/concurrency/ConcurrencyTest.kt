@@ -1,7 +1,6 @@
 package philo.concurrency
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
