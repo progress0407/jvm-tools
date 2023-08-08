@@ -1,4 +1,4 @@
-package philo.simple
+package philo.simple.producer
 
 import mu.KLogger
 import mu.KotlinLogging
@@ -54,7 +54,7 @@ class SimpleProducer<K, V> {
 fun main() {
     val producer = SimpleProducer<String, String>()
 
-    producer.sendValue("testMessage")
+    producer.sendValue("testMessage2")
 
     producer.closeAndFlush()
 }
