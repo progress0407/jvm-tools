@@ -47,8 +47,8 @@ subprojects {
         testImplementation("io.kotest:kotest-runner-junit5:5.6.2")
         testImplementation("io.kotest:kotest-assertions-core:5.6.2")
 
-        // Spring
-        implementation 'org.springframework.boot:spring-boot-starter'
+        // Spring Web MVC
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
         // Spring Test
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
