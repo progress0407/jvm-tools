@@ -4,7 +4,7 @@ import mu.KLogger
 import mu.KotlinLogging
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.serialization.StringSerializer
+import org.apache.kafka.common.serialization.StringDeserializer
 import philo.log.infoGreen
 import java.time.Duration
 import java.util.*
@@ -16,10 +16,10 @@ class SimpleConsumer<K, V> {
     companion object {
         const val BOOTSTRAP_SERVERS = "localhost:9092"
         val TOPIC_NAMES = listOf("test-topic")
-        const val GROUP_ID = "test-group2"
+        const val GROUP_ID = "test-group-7"
     }
 
-    private val consumer: KafkaConsumer<K, V> = initKafkaConsumer();
+    private val consumer: KafkaConsumer<K, V> = initKafkaConsumer()
 
     private fun initKafkaConsumer(): KafkaConsumer<K, V> {
         val configs = initConfigs()
@@ -28,13 +28,13 @@ class SimpleConsumer<K, V> {
     }
 
     private fun initConfigs(): Properties {
-        val props = Properties()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS
-        props[ConsumerConfig.GROUP_ID_CONFIG] = GROUP_ID
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
-        props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
-        return props
+        val configs = Properties()
+        configs[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS
+        configs[ConsumerConfig.GROUP_ID_CONFIG] = GROUP_ID
+        configs[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
+        configs[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
+        configs[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
+        return configs
     }
 
     fun doPolling() {
