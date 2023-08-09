@@ -13,13 +13,18 @@ private val log: KLogger = KotlinLogging.logger {}
 
 class SimpleProducer<K, V> {
 
+    companion object {
+        const val BOOTSTRAP_SERVERS = "localhost:9092"
+        const val TOPIC_NAME = "test-topic"
+    }
+
     private val log: KLogger = KotlinLogging.logger {}
 
     private val kafkaProducer: KafkaProducer<K, V> = initKafkaProducer()
 
     private fun initKafkaProducer(): KafkaProducer<K, V> {
         val configs = initConfigs()
-        log.infoGreen { "Kafka Construct !!" }
+        log.infoGreen { "Kafka Producer Construct !!" }
         return KafkaProducer<K, V>(configs)
     }
 
@@ -29,11 +34,6 @@ class SimpleProducer<K, V> {
         configs[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         configs[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         return configs
-    }
-
-    companion object {
-        public const val TOPIC_NAME = "test-topic"
-        public const val BOOTSTRAP_SERVERS = "localhost:9092"
     }
 
     fun sendValue(value: V) {
