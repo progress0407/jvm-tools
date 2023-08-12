@@ -40,8 +40,14 @@ class SimpleProducer<K, V> {
         val record = createRecord(value)
         kafkaProducer.send(record)
         log.infoGreen { "send record :  $record" }
-
     }
+
+    fun sendValue(partitionNumber: Int, key: K, value: V) {
+        val record = createRecord(partitionNumber, key, value)
+        kafkaProducer.send(record)
+        log.infoGreen { "send record :  $record" }
+    }
+
 
     fun closeAndFlush() {
         kafkaProducer.flush()
@@ -49,12 +55,15 @@ class SimpleProducer<K, V> {
     }
 
     private fun createRecord(value: V) = ProducerRecord<K, V>(TOPIC_NAME, value)
+
+    private fun createRecord(partitionNumber: Int, key: V, value: V) = ProducerRecord<K, V>(TOPIC_NAME, partitionNumber, key, value)
 }
 
 fun main() {
     val producer = SimpleProducer<String, String>()
 
     producer.sendValue("testMessage2")
+    producer.sendValue(0, "some-key", "testMessage2")
 
     producer.closeAndFlush()
 }
