@@ -11,7 +11,7 @@ import java.util.*
 
 private val log: KLogger = KotlinLogging.logger {}
 
-class SimpleProducer<K, V> {
+class CustomProducer<K, V> {
 
     companion object {
         const val BOOTSTRAP_SERVERS = "localhost:9092"
@@ -31,6 +31,7 @@ class SimpleProducer<K, V> {
     private fun initConfigs(): Properties {
         val configs = Properties()
         configs[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS
+        configs[ProducerConfig.PARTITIONER_CLASS_CONFIG] = CustomPartitioner::class.java
         configs[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         configs[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         return configs
@@ -63,6 +64,7 @@ fun main() {
     val producer = CustomProducer<String, String>()
 
     producer.sendValue("testMessage2")
+    producer.sendValue(0, "some-key", "testMessage2")
     producer.sendValue(0, "some-key", "testMessage2")
 
     producer.closeAndFlush()
