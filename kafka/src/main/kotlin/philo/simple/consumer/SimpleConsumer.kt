@@ -48,9 +48,3 @@ class SimpleConsumer<K, V> {
         }
     }
 }
-
-fun main() {
-    val consumer = SimpleConsumer<String, String>()
-
-    consumer.doPolling()
-}

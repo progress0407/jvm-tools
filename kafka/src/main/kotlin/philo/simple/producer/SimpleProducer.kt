@@ -58,12 +58,3 @@ class SimpleProducer<K, V> {
 
     private fun createRecord(partitionNumber: Int, key: K, value: V) = ProducerRecord<K, V>(TOPIC_NAME, partitionNumber, key, value)
 }
-
-fun main() {
-    val producer = CustomProducer<String, String>()
-
-    producer.sendValue("testMessage2")
-    producer.sendValue(0, "some-key", "testMessage2")
-
-    producer.closeAndFlush()
-}
