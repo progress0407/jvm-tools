@@ -1,4 +1,4 @@
-package philo.simple.producer
+package philo.simple.consumer
 
 import mu.KLogger
 import mu.KotlinLogging
@@ -9,14 +9,8 @@ import org.apache.kafka.common.serialization.StringSerializer
 import philo.log.infoGreen
 import java.util.*
 
-private val log: KLogger = KotlinLogging.logger {}
-
-class CustomProducer<K, V> {
-
-    companion object {
-        const val BOOTSTRAP_SERVERS = "localhost:9092"
-        const val TOPIC_NAME = "test-topic"
-    }
+class ConfigurableProducer<K, V>(private val brokers: List<String>,
+                                 private val topicName: String) {
 
     private val log: KLogger = KotlinLogging.logger {}
 
@@ -30,8 +24,8 @@ class CustomProducer<K, V> {
 
     private fun initConfigs(): Properties {
         val configs = Properties()
-        configs[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS
-        configs[ProducerConfig.PARTITIONER_CLASS_CONFIG] = CustomPartitioner::class.java
+        configs[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = brokers
+//        configs[ProducerConfig.PARTITIONER_CLASS_CONFIG] = CustomPartitioner::class.java
         configs[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         configs[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
         return configs
@@ -54,7 +48,7 @@ class CustomProducer<K, V> {
         kafkaProducer.close()
     }
 
-    private fun createRecord(value: V) = ProducerRecord<K, V>(TOPIC_NAME, value)
+    private fun createRecord(value: V) = ProducerRecord<K, V>(topicName, value)
 
-    private fun createRecord(partitionNumber: Int, key: K, value: V) = ProducerRecord<K, V>(TOPIC_NAME, partitionNumber, key, value)
+    private fun createRecord(partitionNumber: Int, key: K, value: V) = ProducerRecord<K, V>(topicName, partitionNumber, key, value)
 }

@@ -29,7 +29,7 @@ class ConfigurableConsumer<K, V>(private val brokers: List<String>,
         configs[ConsumerConfig.GROUP_ID_CONFIG] = groupId
         configs[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
         configs[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
-        configs[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
+//        configs[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
         return configs
     }
 
