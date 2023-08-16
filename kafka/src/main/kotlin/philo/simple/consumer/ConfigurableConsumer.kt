@@ -32,7 +32,7 @@ class ConfigurableConsumer<K, V>(private val brokers: List<String> = listOf("loc
         configs[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
         configs[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
         configs[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = false
-//        configs[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
+        configs[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest" // from-beginning
         return configs
     }
 
@@ -45,7 +45,7 @@ class ConfigurableConsumer<K, V>(private val brokers: List<String> = listOf("loc
             for (record in records) {
                 log.infoGreen { "polling record = ${record.value()}" }
             }
-            consumerCommit()
+            consumer.commitAsyncWithCallback()
         }
     }
 
@@ -56,13 +56,13 @@ class ConfigurableConsumer<K, V>(private val brokers: List<String> = listOf("loc
             consumer.subscribe(topicNames, rebalanceListener)
     }
 
-    private fun consumerCommit() {
+    private fun KafkaConsumer<K, V>.commitAsyncWithCallback() {
         consumer.commitAsync { offsets, exception ->
-            if (exception != null) {
+            if (exception == null) {
+                println("Commit succeeded for offsets: $offsets")
+            } else {
                 println("Commit failed for offsets: $offsets")
                 exception.printStackTrace()
-            } else {
-                println("Commit succeeded for offsets: $offsets")
             }
         }
     }
