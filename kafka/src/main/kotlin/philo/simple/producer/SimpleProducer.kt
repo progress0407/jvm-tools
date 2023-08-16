@@ -11,6 +11,8 @@ import java.util.*
 
 private val log: KLogger = KotlinLogging.logger {}
 
+// 설정 가능한
+
 class SimpleProducer<K, V> {
 
     companion object {
