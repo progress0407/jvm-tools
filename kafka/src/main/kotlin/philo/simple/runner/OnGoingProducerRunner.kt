@@ -7,7 +7,7 @@ fun main() {
 
     val producer = ConfigurableProducer<String, String>(
             brokers = listOf("localhost:9092", "localhost:9093", "localhost:9094"),
-            topicName = "multi-topic-test"
+            topicName = "multi-consuming-topic-test"
     )
 
     for (i in 1..1000) {
