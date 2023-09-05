@@ -1,0 +1,13 @@
+spring:
+  batch:
+    job:
+#      name: ${job.name:NONE}
+      name: "helloWorldJob"
+#  jdbc:
+#    initialize-schema: ALWAYS
+#  datasource:
+#    url:
+#--spring:
+#  batch:
+#    job:
+#      name=helloWorldJob:
