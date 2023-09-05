@@ -3,3 +3,5 @@ include 'lab'
 include 'sql-generator'
 include 'common'
 include 'kafka'
+include 'spring-batch'
+
