@@ -5,12 +5,20 @@ include 'lab',
         'kafka',
         'spring-batch',
         'spring-batch-ver-2',
-        'msa-eureka',
-        'msa-gateway',
-        'msa-ms-1',
-        'msa-ms-2'
+        'msa',
+        'msa:eureka',
+        'msa:gateway',
+        'msa:ms-1',
+        'msa:ms-2'
 
-project(':msa-eureka').projectDir = new File('msa/eureka')
-project(':msa-gateway').projectDir = new File('msa/gateway')
-project(':msa-ms-1').projectDir = new File('msa/ms-1')
-project(':msa-ms-2').projectDir =  new File('msa/ms-2')
+// last setting in msa
+//        'msa-eureka',
+//        'msa-gateway',
+//        'msa-ms-1',
+//        'msa-ms-2'
+
+
+//project(':msa-eureka').projectDir = new File('msa/eureka')
+//project(':msa-gateway').projectDir = new File('msa/gateway')
+//project(':msa-ms-1').projectDir = new File('msa/ms-1')
+//project(':msa-ms-2').projectDir =  new File('msa/ms-2')
