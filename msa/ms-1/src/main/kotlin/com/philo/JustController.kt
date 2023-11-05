@@ -9,13 +9,13 @@ class JustController {
 
     private val log = KotlinLogging.logger { }
 
-    @GetMapping("/ms-1/just")
+    @GetMapping("/ms-1/just/has-prefix")
     fun justWithMsPrefix(): String {
         log.info { "" }
         return "ok"
     }
 
-    @GetMapping("/just")
+    @GetMapping("/just/has-not-prefix")
     fun just(): String {
         log.info { "" }
         return "ok"

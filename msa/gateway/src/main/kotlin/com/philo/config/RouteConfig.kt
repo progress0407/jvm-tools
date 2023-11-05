@@ -23,7 +23,7 @@ class RouteConfig(private val loggingFilter: LoggingFilter) {
         this.path("$url/**")
             .filters { filter ->
                 filter.removeRequestHeader("Cookie")
-//                    .rewritePath("/$url/(?<path>.*)", "/\${path}")
+                    .rewritePath("$url(?<segment>/?.*)", "$\\{segment}") // ex. /order/1 -> /1
                     .filter(loggingFilter)
             }
             .uri("lb://${serviceName}")
