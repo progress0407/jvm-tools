@@ -14,12 +14,12 @@ class RouteConfig(private val loggingFilter: LoggingFilter) {
     @Bean
     fun routes(builder: RouteLocatorBuilder, loggingFilter: LoggingFilter): RouteLocator {
         return builder.routes()
-            .route { it.simpleRouteBuildable("micro-service-1", "/ms-1") }
-            .route { it.simpleRouteBuildable("micro-service-2", "/ms-2") }
+            .route { it.simpleRoute("micro-service-1", "/ms-1") }
+            .route { it.simpleRoute("micro-service-2", "/ms-2") }
             .build()
     }
 
-    private fun PredicateSpec.simpleRouteBuildable(serviceName: String, url: String): Buildable<Route> =
+    private fun PredicateSpec.simpleRoute(serviceName: String, url: String): Buildable<Route> =
         this.path("$url/**")
             .filters { filter ->
                 filter.removeRequestHeader("Cookie")
