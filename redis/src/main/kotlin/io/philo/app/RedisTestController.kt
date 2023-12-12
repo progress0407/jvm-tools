@@ -6,18 +6,29 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/test/redis")
-class RedisController(private val redisRepository: RefreshTokenRepository) {
+class RedisTestController(private val redisRepository: LockRepository) {
 
     @GetMapping("/set-key")
     fun _1() {
-        val entity = RefreshToken("some-token", 5)
+
+        val entity = Lock("foo", 5)
+
         redisRepository.save(entity)
     }
 
     @GetMapping("/get-key")
-    fun _2() {
-        val foundAll = redisRepository.findAll()
+    fun _2(): Any {
+
+        val foundAll: MutableIterable<Lock> = redisRepository.findAll()
 
         println("foundAll = $foundAll")
+
+        return foundAll
+    }
+
+    @GetMapping("/del-key")
+    fun _3() {
+
+        redisRepository.deleteAll()
     }
 }
