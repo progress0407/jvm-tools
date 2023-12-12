@@ -9,7 +9,7 @@ class RedisLockManager(private val repository: LockRepository) : LockManager {
 
         if (checkLock(lockId)) throw LockException("Lock이 이미 존재합니다.")
 
-        val lock = Lock(lockId, 3)
+        val lock = Lock(lockId, 10)
 
         repository.save(lock)
     }
