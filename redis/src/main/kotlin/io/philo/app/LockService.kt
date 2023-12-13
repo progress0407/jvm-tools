@@ -12,7 +12,7 @@ class LockService(private val lockManager: LockManager) {
             return "이미 결제 처리 중입니다."
         }
 
-        lockManager.tryLock(txId)
+        lockManager.preemptLock(txId)
 
         Thread.sleep(6_000)
 

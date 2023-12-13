@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 @Component
 class RedisLockManager(private val repository: LockRepository) : LockManager {
 
-    override fun tryLock(lockId: String) {
+    override fun preemptLock(lockId: String) {
 
         if (checkLock(lockId)) throw LockException("Lock이 이미 존재합니다.")
 
