@@ -11,4 +11,6 @@ include 'lab',
         'msa:ms-1',
         'msa:ms-2',
         'redis',
-        'reactive-x'
+        'reactive-streams',
+        'reactive-with-spring'
+
