@@ -1,4 +1,4 @@
-package io.philo.app
+package io.philo.app.manual
 
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.http.HttpServletResponse

@@ -1,4 +1,4 @@
-package io.philo.app
+package io.philo.app.manual
 
 import jakarta.servlet.Filter
 import jakarta.servlet.FilterChain
