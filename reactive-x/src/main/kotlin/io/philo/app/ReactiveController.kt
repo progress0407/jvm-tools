@@ -17,8 +17,6 @@ class ReactiveController {
         httpServletResponse.contentType = "text/plain;charset=utf-8"
         val out = httpServletResponse.writer
 
-        out.println("응답")
-
         out.flush()
     }
 }
