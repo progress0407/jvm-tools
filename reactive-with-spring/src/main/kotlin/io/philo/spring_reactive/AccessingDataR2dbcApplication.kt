@@ -6,7 +6,6 @@ import mu.KotlinLogging
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.Bean
 import java.time.Duration
 import java.util.*
 
@@ -16,17 +15,17 @@ class AccessingDataR2dbcApplication {
 
     val log = KotlinLogging.logger {  }
 
-    @Bean
+//    @Bean
     fun demo(repository: CustomerRepository): CommandLineRunner {
         return CommandLineRunner { args: Array<String?>? ->
             // save a few customers
             repository.saveAll<Customer>(
                 Arrays.asList<Customer>(
-                    Customer("Jack", "Bauer"),
-                    Customer("Chloe", "O'Brian"),
-                    Customer("Kim", "Bauer"),
-                    Customer("David", "Palmer"),
-                    Customer("Michelle", "Dessler")
+                    Customer("Jack Bauer"),
+                    Customer("Chloe O'Brian"),
+                    Customer("Kim Bauer"),
+                    Customer("David Palmer"),
+                    Customer("Michelle Dessler")
                 )
             )
                 .blockLast(Duration.ofSeconds(10))

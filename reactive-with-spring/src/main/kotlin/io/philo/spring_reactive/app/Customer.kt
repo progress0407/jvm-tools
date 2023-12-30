@@ -3,15 +3,12 @@ package io.philo.spring_reactive.app
 import org.springframework.data.annotation.Id
 
 
-class Customer(val firstName: String, val lastName: String) {
+class Customer(val name: String) {
 
     @Id
     var id: Long? = null
 
     override fun toString(): String {
-        return String.format(
-            "Customer[id=%d, firstName='%s', lastName='%s']",
-            id, firstName, lastName
-        )
+        return "Customer(name='$name', id=$id)"
     }
 }
