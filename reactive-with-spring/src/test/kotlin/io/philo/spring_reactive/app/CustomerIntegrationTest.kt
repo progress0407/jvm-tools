@@ -28,9 +28,6 @@ class CustomerIntegrationTest {
         )
             .blockLast(Duration.ofSeconds(10))
 
-//        val customers: Flux<Customer?> = customerRepository.findAll()
-//        customers.subscribe{ println("data: $it") }
-
         val data = repository.findAll().log()
         println("data = ${data}")
 
