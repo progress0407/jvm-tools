@@ -19,6 +19,7 @@ import kotlin.reflect.KClass
 
 @SpringBootTest
 class GatewayAppTest2 {
+
     @Autowired
     lateinit var routeLocator: RouteLocator
 
@@ -28,7 +29,7 @@ class GatewayAppTest2 {
     @Test
     fun `route 목록을 검증한다`() {
 
-        val routes: MutableList<Route> = routeLocator.routes.collectList().block()!!
+        val routes = routes()
 
         routes["ITEM-SERVICE"] shouldBeRoute {
             path("/items")
@@ -40,6 +41,8 @@ class GatewayAppTest2 {
             path("/orders")
         }
     }
+
+    private fun routes() = routeLocator.routes.collectList().block()!!
 
 
     private infix fun
