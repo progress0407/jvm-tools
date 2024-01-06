@@ -2,26 +2,21 @@ package com.philo.config
 
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
-
-import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
+import reactor.core.publisher.Mono
 
 
 @Component
-class AuthFilter : AbstractGatewayFilterFactory<AuthFilter.Config>(Config::class.java) {
+class AuthFilter : GatewayFilter {
 
-    override fun apply(config: Config): GatewayFilter {
-        // grab configuration from Config object
-        return GatewayFilter { exchange: ServerWebExchange, chain: GatewayFilterChain ->
-            //If you want to build a "pre" filter you need to manipulate the
-            //request before calling chain.filter
-            val builder: ServerHttpRequest.Builder = exchange.request.mutate()
-            chain.filter(exchange.mutate().request(builder.build()).build())
-        }
-    }
+    override fun filter(exchange: ServerWebExchange, chain: GatewayFilterChain): Mono<Void> {
+        // Your custom filtering logic here
+        // For example, modify the request
+        val builder: ServerHttpRequest.Builder = exchange.request.mutate()
+        // ... add your modifications ...
 
-    class Config { //Put the configuration properties for your filter here
-    }
-}
+        // Continue the filter chain
+        return chain.filter(exchange.mutate().request(builder.build()).build())
+    }}

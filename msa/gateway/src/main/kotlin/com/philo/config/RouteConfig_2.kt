@@ -14,7 +14,7 @@ class RouteConfig_2 {
         return builder.routes()
             .route {
                 it.path("/items/**")
-                    .filters { f -> f.filter(authFilter.apply(AuthFilter.Config())) } // I wanner register this place
+                    .filters { f -> f.filter(authFilter) } // I wanner register this place
                     .uri("lb://ITEM-SERVICE")
             }
             .route {
