@@ -11,6 +11,9 @@ import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.OrderedGatewayFilter
 import org.springframework.cloud.gateway.route.Route
 import org.springframework.cloud.gateway.route.RouteLocator
+import org.springframework.http.HttpMethod
+import org.springframework.http.HttpMethod.GET
+import org.springframework.http.HttpMethod.POST
 import kotlin.reflect.KClass
 import com.philo.GatewayAppTest.TestRoute as Route_
 
@@ -27,21 +30,30 @@ class GatewayAppTest {
 
         val routes: MutableList<Route> = routeLocator.routes.collectList().block()!!
 
-        routes["ITEM-SERVICE"] shouldBe_ Route_("/item", AuthFilter::class)
+        routes["ITEM-SERVICE"] shouldBe_ Route_("/item", listOf(GET, POST), AuthFilter::class)
         routes["ORDER-SERVICE"] shouldBe_ Route_("/orders")
     }
 
-    final inline infix fun <reified F: GatewayFilter> Route.shouldBe_(route: Route_<F>) {
+    final inline infix fun <reified F : GatewayFilter> Route.shouldBe_(route: Route_<F>) {
+
+        // URL 검증
         this.predicate.toString() shouldContain route.path
-        if(route.filter != null)
+        if (route.httpMethods != null) {
+            for (httpMethod in route.httpMethods!!) {
+                this.predicate.toString() shouldContain httpMethod.toString()
+            }
+        }
+
+        // 필터 목록 검증
+        if (route.filter != null)
             this.filters shouldHasFilter route.filter!!
     }
 
-    final inline infix fun <T : List<GatewayFilter>, reified U : GatewayFilter>
-            T.shouldHasFilter(expected: KClass<U>) {
+    final inline infix fun <reified F : GatewayFilter, L : List<GatewayFilter>>
+            L.shouldHasFilter(expected: KClass<F>) {
 
-        val isMatched = this.map { gatewayFilter -> gatewayFilter as OrderedGatewayFilter }
-            .any { orderedGatewayFilter -> orderedGatewayFilter.delegate is U }
+        val isMatched = this.filterIsInstance<OrderedGatewayFilter>()
+            .any { orderedGatewayFilter -> orderedGatewayFilter.delegate is F }
 
         isMatched shouldBe true
     }
@@ -49,11 +61,13 @@ class GatewayAppTest {
     private val Route.msId: String
         get() = this.uri.toString().replaceFirst("lb://", "")
 
-    class TestRoute<F: GatewayFilter>(var path: String, var filter: KClass<F>? = null) {
+    class TestRoute<F : GatewayFilter>(
+        var path: String,
+        var httpMethods: List<HttpMethod>? = null,
+        var filter: KClass<F>? = null,
+    )
 
-    }
-
-    private operator fun <T: Route> MutableList<T>.get(msId: String): T {
+    private operator fun <T : Route> MutableList<T>.get(msId: String): T {
         return this.find { it.msId == msId }!!
     }
 }

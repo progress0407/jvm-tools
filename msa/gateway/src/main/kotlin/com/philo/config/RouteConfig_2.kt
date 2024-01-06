@@ -4,6 +4,7 @@ import org.springframework.cloud.gateway.route.RouteLocator
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 
 @Configuration
 class RouteConfig_2 {
@@ -14,6 +15,7 @@ class RouteConfig_2 {
         return builder.routes()
             .route {
                 it.path("/items/**")
+                    .and().method(HttpMethod.GET, HttpMethod.POST)
                     .filters { f -> f.filter(authFilter) } // I wanner register this place
                     .uri("lb://ITEM-SERVICE")
             }
