@@ -28,10 +28,7 @@ class GatewayAppTest {
         val routes: MutableList<Route> = routeLocator.routes.collectList().block()!!
 
         routes["ITEM-SERVICE"] shouldBe_ Route_("/item", AuthFilter::class)
-
-//        val orderRoute = routes.find { it.msId == "ORDER-SERVICE" }!!
-//        orderRoute.predicate.toString() shouldContain "/orders"
-//        orderRoute.filters shouldContain loggingFilter
+        routes["ORDER-SERVICE"] shouldBe_ Route_("/orders")
     }
 
     final inline infix fun <reified F: GatewayFilter> Route.shouldBe_(route: Route_<F>) {
@@ -52,7 +49,7 @@ class GatewayAppTest {
     private val Route.msId: String
         get() = this.uri.toString().replaceFirst("lb://", "")
 
-    class TestRoute<F: GatewayFilter>(var path: String, var filter: KClass<F>?) {
+    class TestRoute<F: GatewayFilter>(var path: String, var filter: KClass<F>? = null) {
 
     }
 
