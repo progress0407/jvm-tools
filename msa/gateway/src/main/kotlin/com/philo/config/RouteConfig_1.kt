@@ -5,13 +5,11 @@ import org.springframework.cloud.gateway.route.RouteLocator
 import org.springframework.cloud.gateway.route.builder.Buildable
 import org.springframework.cloud.gateway.route.builder.PredicateSpec
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 
-@Configuration
-class RouteConfig(private val loggingFilter: LoggingFilter) {
+//@Configuration
+class RouteConfig_1(private val loggingFilter: LoggingFilter) {
 
-    @Bean
+//    @Bean
     fun routes(builder: RouteLocatorBuilder, loggingFilter: LoggingFilter): RouteLocator {
         return builder.routes()
             .route { it.simpleRoute("micro-service-1", "/ms-1") }
@@ -19,11 +17,11 @@ class RouteConfig(private val loggingFilter: LoggingFilter) {
             .build()
     }
 
-    private fun PredicateSpec.simpleRoute(serviceName: String, url: String): Buildable<Route> =
-        this.path("$url/**")
+    private fun PredicateSpec.simpleRoute(serviceName: String, path: String): Buildable<Route> =
+        this.path("$path/**")
             .filters { filter ->
                 filter.removeRequestHeader("Cookie")
-                    .rewritePath("$url(?<segment>/?.*)", "$\\{segment}") // ex. /order/1 -> /1
+                    .rewritePath("$path(?<segment>/?.*)", "$\\{segment}") // ex. /order/1 -> /1
                     .filter(loggingFilter)
             }
             .uri("lb://${serviceName}")
