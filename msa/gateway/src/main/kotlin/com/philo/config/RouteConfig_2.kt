@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration
 class RouteConfig_2 {
 
     @Bean
-    fun routes(builder: RouteLocatorBuilder, loggingFilter: LoggingFilter): RouteLocator {
+    fun routes(builder: RouteLocatorBuilder, loggingFilter: LoggingFilter, authFilter: AuthFilter): RouteLocator {
 
         return builder.routes()
             .route {
                 it.path("/items/**")
-                    .filters { it.removeRequestHeader("Cookie") }
+                    .filters { f -> f.filter(authFilter.apply(AuthFilter.Config())) } // I wanner register this place
                     .uri("lb://ITEM-SERVICE")
             }
             .route {
