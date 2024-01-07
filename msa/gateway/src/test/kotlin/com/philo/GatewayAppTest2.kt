@@ -5,6 +5,8 @@ import com.philo.config.LoggingFilter
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.gateway.filter.GatewayFilter
@@ -20,6 +22,8 @@ import kotlin.reflect.KClass
 @SpringBootTest
 class GatewayAppTest2 {
 
+    val logger = logger<GatewayAppTest2>()
+
     @Autowired
     lateinit var routeLocator: RouteLocator
 
@@ -34,7 +38,8 @@ class GatewayAppTest2 {
         routes["ITEM-SERVICE"] shouldBeRoute {
             path("/items")
             httpMethods(GET, POST)
-            filters(AuthFilter::class)
+            filter<AuthFilter>()
+//            filters(AuthFilter::class)
         }
 
         routes["ORDER-SERVICE"] shouldBeRoute {
@@ -66,6 +71,10 @@ class GatewayAppTest2 {
 
         fun httpMethods(vararg values: HttpMethod) {
             this.httpMethods = values
+        }
+
+        inline fun <reified T : GatewayFilter> filter() {
+            this.filters = arrayOf(T::class)
         }
 
         fun filters(vararg values: KClass<out GatewayFilter>) {
@@ -108,4 +117,5 @@ class GatewayAppTest2 {
     }
 }
 
+inline fun <reified T> logger(): Logger = LoggerFactory.getLogger(T::class.java)
 
