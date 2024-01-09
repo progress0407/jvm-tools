@@ -9,7 +9,7 @@ import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
 @Component
-class LoggingFilter : GatewayFilter, Ordered {
+class GlobalLoggingFilter : GatewayFilter, Ordered {
 
     private val log = KotlinLogging.logger { }
 

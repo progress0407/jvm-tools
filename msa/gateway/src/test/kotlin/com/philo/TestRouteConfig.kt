@@ -1,33 +1,36 @@
-package com.philo.config
+package com.philo
 
+import com.philo.config.AuthFilter
+import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.cloud.gateway.route.RouteLocator
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 
-@Configuration
-class RouteConfig_2 {
+@TestConfiguration
+class TestRouteConfig {
 
-    @Bean
-    fun routes(builder: RouteLocatorBuilder, loggingFilter: LoggingFilter, authFilter: AuthFilter): RouteLocator {
+//    @Primary
+    @Bean("testRoute")
+    fun testRoute(builder: RouteLocatorBuilder,
+                  authFilter: AuthFilter): RouteLocator {
 
         return builder.routes()
             .route {
                 it.path("/items/**")
                     .and().method(HttpMethod.GET, HttpMethod.POST)
-                    .filters { f -> f.filter(authFilter) } // I wanner register this place
+                    .filters { f -> f.filter(authFilter) }
                     .uri("lb://ITEM-SERVICE")
             }
             .route {
                 it.path("/orders/**")
                     .filters { it.removeRequestHeader("Cookie") }
-                    .uri("lb://${"ORDER-SERVICE"}")
+                    .uri("lb://ORDER-SERVICE")
             }
             .route {
                 it.path("/users/**")
                     .filters { it.removeRequestHeader("Cookie") }
-                    .uri("lb://${"USER-SERVICE"}")
+                    .uri("lb://USER-SERVICE")
             }
             .build()
     }

@@ -1,18 +1,20 @@
 package com.philo
 
 import com.philo.config.AuthFilter
-import com.philo.config.LoggingFilter
+import com.philo.config.GlobalLoggingFilter
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.OrderedGatewayFilter
 import org.springframework.cloud.gateway.route.Route
 import org.springframework.cloud.gateway.route.RouteLocator
+import org.springframework.context.annotation.Import
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpMethod.GET
 import org.springframework.http.HttpMethod.POST
@@ -20,15 +22,17 @@ import kotlin.properties.Delegates
 import kotlin.reflect.KClass
 
 @SpringBootTest
-class GatewayAppTest2 {
+@Import(TestRouteConfig::class)
+class GatewayAppTestByDsl {
 
-    val logger = logger<GatewayAppTest2>()
+    val logger = logger<GatewayAppTestByDsl>()
 
     @Autowired
+    @Qualifier("testRoute")
     lateinit var routeLocator: RouteLocator
 
     @Autowired
-    lateinit var loggingFilter: LoggingFilter
+    lateinit var loggingFilter: GlobalLoggingFilter
 
     @Test
     fun `route 목록을 검증한다`() {
@@ -112,9 +116,8 @@ class GatewayAppTest2 {
         get() = this.uri.toString().replaceFirst("lb://", "")
 
 
-    private operator fun <T : Route> MutableList<T>.get(msId: String): T {
-        return this.find { it.msId == msId }!!
-    }
+    private operator fun <T : Route> MutableList<T>.get(msId: String): T =
+        this.find { it.msId == msId }!!
 }
 
 inline fun <reified T> logger(): Logger = LoggerFactory.getLogger(T::class.java)
