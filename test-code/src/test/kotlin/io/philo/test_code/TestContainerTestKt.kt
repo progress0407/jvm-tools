@@ -1,12 +1,11 @@
-package io.philo
+package io.philo.test_code
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.string.shouldNotBeBlank
 import org.testcontainers.containers.PostgreSQLContainer
 
 
-//@Testcontainer
-class MyDatabaseTests : StringSpec({
+class TestContainerTestKt : StringSpec({
 
     val postgresContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres:latest")
 

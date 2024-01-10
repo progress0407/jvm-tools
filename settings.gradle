@@ -12,6 +12,6 @@ include 'lab',
         'redis',
         'reactive-streams',
         'reactive-with-spring',
-        'test-container',
+        'test-code',
         'docker'
 
