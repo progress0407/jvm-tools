@@ -1,2 +1,4 @@
 #!/bin/bash
-docker build -t app-img -f docker/Dockerfile .
+../gradlew :docker:assemble  && \
+docker build -t progress0407/docker-app -f docker/Build-Jar-Dockerfile . && \
+docker push progress0407/docker-app
