@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  app-ct2:
+    image: progress0407/app-img
+    ports:
+      - "80:8080"
