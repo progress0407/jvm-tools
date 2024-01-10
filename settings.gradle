@@ -12,5 +12,6 @@ include 'lab',
         'msa:ms-2',
         'redis',
         'reactive-streams',
-        'reactive-with-spring'
+        'reactive-with-spring',
+        'test-container'
 
