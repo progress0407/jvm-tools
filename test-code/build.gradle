@@ -1,3 +1,18 @@
 dependencies {
+    // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 테스트 컨테이너
     testImplementation 'org.testcontainers:postgresql:1.19.3'
+
+    // 롬복
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // Rest Assured Test
+    testImplementation 'io.rest-assured:rest-assured:5.3.1'
+
+    runtimeOnly 'com.h2database:h2'
 }
