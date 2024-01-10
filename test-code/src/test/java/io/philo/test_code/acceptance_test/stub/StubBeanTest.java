@@ -32,6 +32,7 @@ public class StubBeanTest extends AcceptanceTest {
     @DisplayName("프로덕션의 Bean이 아닌 Test 패키지의 Bean이 등록됨을 확인한다")
     @Test
     void assert_test_bean() {
+
         assertThat(child.info()).isEqualTo(Daughter.INFO);
     }
 }

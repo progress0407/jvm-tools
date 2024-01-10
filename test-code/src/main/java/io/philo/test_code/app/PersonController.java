@@ -40,4 +40,9 @@ public class PersonController {
 
         return new PersonListResponses(dtos);
     }
+
+    @GetMapping("/mock")
+    public String mock() {
+        return child.info();
+    }
 }
