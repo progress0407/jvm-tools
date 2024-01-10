@@ -4,7 +4,6 @@ include 'lab',
         'common',
         'kafka',
         'spring-batch',
-        'spring-batch-ver-2',
         'msa',
         'msa:eureka',
         'msa:gateway',
@@ -13,5 +12,6 @@ include 'lab',
         'redis',
         'reactive-streams',
         'reactive-with-spring',
-        'test-container'
+        'test-container',
+        'docker'
 
