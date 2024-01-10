@@ -1,5 +1,6 @@
 package io.philo.test_code.app;
 
+import io.philo.test_code.app.bean.Child;
 import io.philo.test_code.app.dto.PersonCreateRequest;
 import io.philo.test_code.app.dto.PersonCreateResponse;
 import io.philo.test_code.app.dto.PersonListResponse;
@@ -16,6 +17,7 @@ import java.util.List;
 public class PersonController {
 
     private final PersonRepository repository;
+    private final Child child;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
