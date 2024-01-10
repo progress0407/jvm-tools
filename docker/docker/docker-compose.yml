@@ -1,7 +1,18 @@
 version: '3.7'
 
 services:
-  app-ct2:
+  db-ct:
+    image: mysql:8.0.3
+    volumes:
+      - ./data/db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: docker_app
+      MYSQL_USER: philo
+      MYSQL_PASSWORD: 1234
+
+  app-ct:
+    depends_on: db-ct
     image: progress0407/app-img
     ports:
       - "80:8080"
