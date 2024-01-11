@@ -1,3 +1,10 @@
 #!/bin/bash
-docker-compose -f ./docker/docker-compose.yml up -d
-#docker run -it -p 8080:8080 --name app progress0407/docker-app
+
+set -e
+source ./color-echo.sh
+
+echo_blue "[ Building Jar And Running ... ]"
+
+docker-compose -f ./docker-script/docker-compose.yml up -d
+
+echo_green "[ Process completed successfully ! ]"

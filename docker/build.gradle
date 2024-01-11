@@ -7,24 +7,36 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 }
 
+ext {
+    dockerImageName = 'progress0407/docker-app'
+}
 
-task buildAndPushDockerImage(type: Exec) {
-
-    ext {
-        dockerImageName = 'progress0407/docker-app'
-    }
+task buildDockerImage(type: Exec) {
 
     dependsOn ':docker:assemble'
 
     commandLine 'bash', '-c', """
-        docker build -t $dockerImageName -f docker/Build-Jar-Dockerfile . && \
+        docker build -t $dockerImageName -f docker-script/app/Build-Jar-Dockerfile .
+    """
+}
+
+task pushDockerImage(type: Exec) {
+
+    commandLine 'bash', '-c', """
         docker push $dockerImageName
     """
 }
 
+
+task buildAndPushDockerImage {
+
+//    dependsOn buildDockerImage, pushDockerImage
+    dependsOn buildDockerImage
+}
+
 task buildAndPushDockerImageAsis(type: Exec) {
 
-    workingDir './'  // Adjust the working directory if necessary
+    workingDir './'
 
     dependsOn ':docker:assemble'
 
@@ -43,6 +55,4 @@ task buildAndPushDockerImageAsis(type: Exec) {
 //    }
 }
 
-
-// Optional: make this task depend on the assembly of your project, if needed
-buildAndPushDockerImage.dependsOn ':docker:assemble'
+//buildAndPushDockerImage.dependsOn ':docker:assemble'
