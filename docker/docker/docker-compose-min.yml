@@ -4,20 +4,11 @@ services:
   db:
     container_name: db-container
     image: mysql:8.0.3
-#    ports:
-#      - "3307:3306"
-#    volumes:
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-#      - ./data/db_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: docker_app
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: 1234
       TZ: 'Asia/Seoul'
-#      MYSQL_USER: philo
-#      MYSQL_PASSWORD: 1234
-#    networks:
-#      - test_network
 
   app:
     container_name: app-container
@@ -30,8 +21,3 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/docker_app?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
-#    networks:
-#      - test_network
-
-#networks:
-#  test_network:

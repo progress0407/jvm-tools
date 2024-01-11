@@ -6,3 +6,43 @@ dependencies {
 
     runtimeOnly 'com.h2database:h2'
 }
+
+
+task buildAndPushDockerImage(type: Exec) {
+
+    ext {
+        dockerImageName = 'progress0407/docker-app'
+    }
+
+    dependsOn ':docker:assemble'
+
+    commandLine 'bash', '-c', """
+        docker build -t $dockerImageName -f docker/Build-Jar-Dockerfile . && \
+        docker push $dockerImageName
+    """
+}
+
+task buildAndPushDockerImageAsis(type: Exec) {
+
+    workingDir './'  // Adjust the working directory if necessary
+
+    dependsOn ':docker:assemble'
+
+    // Define the command line as a list of strings
+//    commandLine 'bash', '-c', """
+//        ./gradlew :docker:assemble
+//    """
+
+//    def osName = System.properties['os.name']
+//    println "osName = $osName"
+
+//    if (osName.toLowerCase().contains('windows')) {
+//        commandLine 'cmd', '/c', 'gradlew', ':docker:assemble'
+//    } else {
+//        commandLine './gradlew', ':docker:assemble'
+//    }
+}
+
+
+// Optional: make this task depend on the assembly of your project, if needed
+buildAndPushDockerImage.dependsOn ':docker:assemble'
