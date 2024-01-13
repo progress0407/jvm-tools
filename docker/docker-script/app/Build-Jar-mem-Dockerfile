@@ -1,6 +1,5 @@
 FROM openjdk:17-jdk-slim
 #EXPOSE 8080
-ARG SPRING_PROFILE=prod
 ARG JAR_IN_HOST_PATH="../../build/libs/docker-0.0.1-SNAPSHOT.jar"
 COPY $JAR_IN_HOST_PATH 'app.jar'
-ENTRYPOINT ["java", "-Dspring.profiles.active=$SPRING_PROFILE", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=local-mem", "-jar", "app.jar"]

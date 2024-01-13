@@ -11,7 +11,7 @@ ext {
     dockerImageName = 'progress0407/docker-app'
 }
 
-task buildDockerImage(type: Exec) {
+tasks.register('buildDockerImage', Exec) {
 
     dependsOn ':docker:assemble'
 
@@ -20,7 +20,7 @@ task buildDockerImage(type: Exec) {
     """
 }
 
-task pushDockerImage(type: Exec) {
+tasks.register('pushDockerImage', Exec) {
 
     commandLine 'bash', '-c', """
         docker push $dockerImageName
@@ -28,13 +28,13 @@ task pushDockerImage(type: Exec) {
 }
 
 
-task buildAndPushDockerImage {
+tasks.register('buildAndPushDockerImage') {
 
-//    dependsOn buildDockerImage, pushDockerImage
-    dependsOn buildDockerImage
+    dependsOn buildDockerImage, pushDockerImage
+//    dependsOn buildDockerImage
 }
 
-task buildAndPushDockerImageAsis(type: Exec) {
+tasks.register('buildAndPushDockerImageAsis', Exec) {
 
     workingDir './'
 

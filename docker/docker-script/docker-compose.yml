@@ -4,6 +4,12 @@ services:
   db:
     container_name: db-container
     image: mysql:8.0.3
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d # MySQL 설정 파일 위치
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
     environment:
       MYSQL_DATABASE: docker_app
       MYSQL_ROOT_HOST: '%'
