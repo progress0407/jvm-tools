@@ -1,0 +1,9 @@
+FROM openjdk:17-jdk-slim
+
+ARG JAR_IN_HOST_PATH="../../build/libs/docker-0.0.1-SNAPSHOT.jar"
+COPY $JAR_IN_HOST_PATH 'app.jar'
+ENTRYPOINT ["java", \
+"-Dspring.profiles.active=prod", \
+"-Dspring.datasource.url=jdbc:mysql://svc-db-forward:3306/docker_app?useSSL=false&allowPublicKeyRetrieval=true", \
+"-Duser.server.version=1", \
+"-jar", "app.jar"]

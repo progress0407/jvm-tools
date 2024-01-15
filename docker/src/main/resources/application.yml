@@ -3,3 +3,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+
+user.server.version: 1
