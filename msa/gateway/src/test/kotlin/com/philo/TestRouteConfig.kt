@@ -10,7 +10,6 @@ import org.springframework.http.HttpMethod
 @TestConfiguration
 class TestRouteConfig {
 
-//    @Primary
     @Bean("testRoute")
     fun testRoute(builder: RouteLocatorBuilder,
                   authFilter: AuthFilter): RouteLocator {

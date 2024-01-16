@@ -11,6 +11,7 @@ import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.OrderedGatewayFilter
 import org.springframework.cloud.gateway.route.Route
 import org.springframework.cloud.gateway.route.RouteLocator
+import org.springframework.context.annotation.Import
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpMethod.GET
 import org.springframework.http.HttpMethod.POST
@@ -18,12 +19,15 @@ import kotlin.reflect.KClass
 import com.philo.GatewayAppTest.TestRoute as Route_
 
 @SpringBootTest
+@Import(TestRouteConfig::class)
 class GatewayAppTest {
+
     @Autowired
     lateinit var routeLocator: RouteLocator
 
     @Autowired
     lateinit var loggingFilter: GlobalLoggingFilter
+
 
     @Test
     fun `route 목록을 검증한다`() {
