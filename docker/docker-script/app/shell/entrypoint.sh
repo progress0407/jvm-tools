@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
 java \
-  -Dspring.profiles.active=$SPRING_PROFILE \
-  -Duser.server.version=$USER_SERVER_VERSION \
+  -Dspring.profiles.active=${SPRING_PROFILE} \
+  -Duser.server.version=${SERVER_VERSION} \
   -jar app.jar

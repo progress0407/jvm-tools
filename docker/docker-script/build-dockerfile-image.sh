@@ -14,5 +14,6 @@ docker build  \
   -t app-img \
   -f app/Simple-Build-Jar-Dockerfile ../..
 
+# 원래의 디렉터리로 돌아가지 않아도 정상 동작한다 ...
 #   cd $SHELL_PATH
 #   echo "NOW RETURN = $(pwd)"
