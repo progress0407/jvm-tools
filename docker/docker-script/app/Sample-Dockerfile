@@ -1,0 +1,5 @@
+FROM ubuntu
+
+ARG SOME_ARG="foo"
+
+ENTRYPOINT [ "/bin/sh", "-c", "${SOME_ARG}"]

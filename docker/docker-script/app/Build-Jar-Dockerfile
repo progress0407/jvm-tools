@@ -2,22 +2,17 @@ FROM openjdk:17-jdk-slim
 
 #EXPOSE 8080
 ARG JAR_IN_HOST_PATH="../../build/libs/docker-0.0.1-SNAPSHOT.jar"
-ARG ENTRYPOINT_PATH="../app/shell/entrypoint.sh"
+# ARG ENTRYPOINT_PATH="../app/shell/entrypoint.sh"
 
 ARG SPRING_PROFILE=prod
-ENV SPRING_PROFILE=${SPRING_PROFILE}
+#ENV SPRING_PROFILE=${SPRING_PROFILE}
 ARG USER_SERVER_VERSION=1
-ENV USER_SERVER_VERSION=${USER_SERVER_VERSION}
-
-RUN echo "#SPRING_PROFILE = ${SPRING_PROFILE}"
-RUN echo "#USER_SERVER_VERSION = ${USER_SERVER_VERSION}"
-CMD echo $(pwd)
-CMD $(pwd)
-RUN ls
-RUN ls -al shell/
+#ENV USER_SERVER_VERSION=${USER_SERVER_VERSION}
 
 COPY $JAR_IN_HOST_PATH 'app.jar'
-COPY $ENTRYPOINT_PATH 'entrypoint.sh'
-RUN chmod +x /entrypoint.sh
+# COPY $ENTRYPOINT_PATH './shell/entrypoint.sh'
 
-ENTRYPOINT ". entrypoint.sh"
+# RUN chmod +x /entrypoint.sh
+
+# ENTRYPOINT ". entrypoint.sh"
+ENTRYPOINT [ "java -Dspring.profiles.active=${SPRING_PROFILE} -Duser.server.version=${USER_SERVER_VERSION} -jar app.jar" ]

@@ -5,7 +5,7 @@ services:
     container_name: db-container
     image: mysql:8.0.3
     volumes:
-      - ./mysql/conf.d:/etc/mysql/conf.d # MySQL 설정 파일 위치
+      - ./mysql/conf.d:/etc/mysql/conf.d
     command:
       - "mysqld"
       - "--character-set-server=utf8mb4"
@@ -18,8 +18,6 @@ services:
 
   app:
     container_name: app-container
-    depends_on:
-      - db
     build:
       context: ..
       dockerfile: docker-script/app/Build-Jar-Dockerfile
@@ -29,3 +27,5 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/docker_app?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - db
