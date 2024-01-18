@@ -1,5 +1,7 @@
 package io.philo.docker.app
 
+import io.philo.app.entity.PersonEntity
+import io.philo.app.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,7 +21,7 @@ class DockerController(
     fun hi() = "Hi, there !!"
 
     @PostMapping("/person")
-    fun add() = repository.save(Person())
+    fun add() = repository.save(PersonEntity())
 
     @GetMapping("/person")
     fun list() = repository.findAll()

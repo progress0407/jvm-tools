@@ -1,10 +1,10 @@
-package io.philo.docker.app
+package io.philo.app.entity
 
 import jakarta.persistence.*
 import java.util.*
 
 @Entity
-class Person {
+class PersonEntity {
 
 
     @Id

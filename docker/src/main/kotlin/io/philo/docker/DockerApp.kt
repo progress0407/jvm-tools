@@ -3,7 +3,7 @@ package io.philo.docker
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["io.philo.app"])
 class DockerApp
 
 fun main() {

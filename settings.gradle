@@ -2,6 +2,7 @@ rootProject.name = 'jvm-lab-tools'
 include 'lab',
         'sql-generator',
         'common',
+        'common-jpa',
         'kafka',
         'spring-batch',
         'msa',
