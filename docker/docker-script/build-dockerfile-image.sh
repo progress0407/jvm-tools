@@ -10,7 +10,7 @@ cd $CURRENT_PATH
 
 docker build  \
   --build-arg SPRING_PROFILE="local-mem" \
-  --build-arg USER_SERVER_VERSION="100" \
+  --build-arg SERVER_VERSION="100" \
   -t app-img \
   -f app/Simple-Build-Jar-Dockerfile ../..
 

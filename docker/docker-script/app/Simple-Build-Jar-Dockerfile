@@ -3,13 +3,13 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
 ARG SPRING_PROFILE=prod
-ARG USER_SERVER_VERSION=1
+ARG SERVER_VERSION=1
 
 ENV SPRING_PROFILE=$SPRING_PROFILE
-ENV USER_SERVER_VERSION=$USER_SERVER_VERSIO
+ENV SERVER_VERSION=$SERVER_VERSION
 
 # COPY '../../build/libs/docker-0.0.1-SNAPSHOT.jar' 'app.jar'
 COPY 'docker/build/libs/docker-0.0.1-SNAPSHOT.jar' 'app.jar'
 
 # ENTRYPOINT [ "java -Dspring.profiles.active=${SPRING_PROFILE} -Duser.server.version=${USER_SERVER_VERSION} -jar app.jar" ]
-ENTRYPOINT [ "/bin/sh", "-c", "java -Dspring.profiles.active=${SPRING_PROFILE} -Duser.server.version=${USER_SERVER_VERSION} -jar app.jar" ]
+ENTRYPOINT [ "/bin/sh", "-c", "java -Dspring.profiles.active=${SPRING_PROFILE} -Duser.server.version=${SERVER_VERSION} -jar app.jar" ]

@@ -2,6 +2,7 @@ package io.philo.docker.app
 
 import io.philo.app.entity.PersonEntity
 import io.philo.app.repository.PersonRepository
+import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,6 +16,11 @@ class DockerController(
 ) {
 
     private val randomStr = UUID.randomUUID().toString()
+
+    @PostConstruct
+    fun init() {
+        println("### current version is $version !")
+    }
 
 
     @GetMapping("/hi")
