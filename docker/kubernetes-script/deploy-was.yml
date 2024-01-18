@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-was
+  namespace: ns-sample
+spec:
+  selector:
+    matchLabels:
+      pod-type: was
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        pod-type: was
+    spec:
+      containers:
+      - name: container
+        image: progress0407/ailys-app
+        envFrom:
+        - configMapRef:
+            name: cm-was
+        resources:
+          requests:
+            memory: 50Mi
+          limits:
+            memory: 300Mi
+      terminationGracePeriodSeconds: 0

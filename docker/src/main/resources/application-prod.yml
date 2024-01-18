@@ -2,6 +2,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://db:3307/docker_app?useSSL=false
-    url: jdbc:mysql://svc-db-forward:3306/docker_app?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://svc-db-router:3306/sample_app?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
