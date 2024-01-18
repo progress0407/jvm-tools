@@ -6,6 +6,6 @@ metadata:
 data:
  spring.profiles.active: 'prod'
  server.port: '8080'
- spring.datasource.url: 'jdbc:mysql://svc-db-router:3306/docker_app?useSSL=false&allowPublicKeyRetrieval=true'
+ spring.datasource.url: 'jdbc:mysql://svc-db-router:3306/sample_app?useSSL=false&allowPublicKeyRetrieval=true'
  spring.datasource.username: 'root'
  spring.datasource.password: '1234'

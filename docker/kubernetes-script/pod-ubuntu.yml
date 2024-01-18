@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-ubuntu
+  labels:
+    purpose: demonstrate-ubuntu
+spec:
+  containers:
+  - name: ubuntu-container
+    image: ubuntu
+    command: ["tail"]
+    args: ["-f", "/dev/null"]

@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       pod-type: was
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   minReadySeconds: 10
@@ -16,15 +16,16 @@ spec:
       labels:
         pod-type: was
     spec:
+      subdomain: svc-db-router
       containers:
       - name: container
-        image: progress0407/ailys-app
+        image: progress0407/app
         envFrom:
         - configMapRef:
             name: cm-was
         resources:
           requests:
-            memory: 50Mi
+            memory: 20Mi
           limits:
             memory: 300Mi
       terminationGracePeriodSeconds: 0
