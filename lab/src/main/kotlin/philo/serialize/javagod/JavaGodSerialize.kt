@@ -1,6 +1,6 @@
 package philo.serialize.javagod
 
-import philo.io.ObjectIOManager
+import io.philo.io.ObjectIOManager
 
 /**
  * 자바의 신 Serialize 실습

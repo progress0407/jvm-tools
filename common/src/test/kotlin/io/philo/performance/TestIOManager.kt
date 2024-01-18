@@ -1,4 +1,4 @@
-package philo.io.performance
+package io.philo.performance
 
 import mu.KLogger
 import mu.KotlinLogging

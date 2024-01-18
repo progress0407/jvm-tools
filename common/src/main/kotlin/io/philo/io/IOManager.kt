@@ -1,4 +1,4 @@
-package philo.io
+package io.philo.io
 
 import mu.KLogger
 import mu.KotlinLogging

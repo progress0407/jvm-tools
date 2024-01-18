@@ -1,4 +1,4 @@
-package philo.log
+package io.philo.log
 
 import mu.KLogger
 

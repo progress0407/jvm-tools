@@ -1,4 +1,4 @@
-package philo.io.performance
+package io.philo.performance
 
 import io.kotest.core.spec.style.FunSpec
 

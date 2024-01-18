@@ -1,7 +1,8 @@
-package philo.io
+package io.philo
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.philo.io.FileIOManager
 
 class FileIOManagerTest : FunSpec({
 

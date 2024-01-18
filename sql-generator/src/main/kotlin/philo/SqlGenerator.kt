@@ -1,6 +1,6 @@
 package philo
 
-import philo.io.FileIOManager
+import io.philo.io.FileIOManager
 
 class SqlGenerator
 

@@ -1,13 +1,10 @@
-package philo.io
+package io.philo.performance
 
-import philo.log.infoGreen
+import io.philo.io.IOManager
 import java.io.File
 
-class FileIOManager : IOManager<String>() {
+class TestNonBufferedFileIOManager : IOManager<String>() {
 
-    /**
-     * 이름을 포함한 경로를 넣는다.
-     */
     override fun save(content: String, basePath: String, vararg subPaths: String) {
 
         val fullPath = convertPath(basePath, *subPaths)
@@ -15,7 +12,7 @@ class FileIOManager : IOManager<String>() {
 
         File(fullPath.toUri()).writeText(content)
 
-        log.infoGreen { "File Saved Successfully !! $fullPath" }
+        log.info { "File Saved Successfully !! $fullPath" }
     }
 
     fun load(basePath: String, vararg subPath: String): String {

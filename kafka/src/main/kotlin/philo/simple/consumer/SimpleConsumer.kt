@@ -5,7 +5,7 @@ import mu.KotlinLogging
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
-import philo.log.infoGreen
+import io.philo.log.infoGreen
 import java.time.Duration
 import java.util.*
 

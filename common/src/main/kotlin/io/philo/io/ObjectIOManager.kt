@@ -1,4 +1,4 @@
-package philo.io
+package io.philo.io
 
 import java.io.FileInputStream
 import java.io.ObjectInputStream

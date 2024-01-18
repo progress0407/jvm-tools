@@ -1,16 +1,16 @@
-package philo.io.performance
+package io.philo.performance
 
-import philo.io.IOManager
+import io.philo.io.IOManager
 import java.io.File
 
-class TestNonBufferedFileIOManager : IOManager<String>() {
+class TestBufferedFileIOManager : IOManager<String>() {
 
     override fun save(content: String, basePath: String, vararg subPaths: String) {
 
         val fullPath = convertPath(basePath, *subPaths)
         createPathIfNotExist(fullPath)
 
-        File(fullPath.toUri()).writeText(content)
+        File(fullPath.toUri()).bufferedWriter().use { it.write(content) }
 
         log.info { "File Saved Successfully !! $fullPath" }
     }
@@ -19,7 +19,7 @@ class TestNonBufferedFileIOManager : IOManager<String>() {
 
         val fullPath = convertPath(basePath, *subPath)
 
-        return File(fullPath.toUri()).readText()
+        return File(fullPath.toUri()).bufferedReader().use { it.readText() }
     }
 
     fun delete(basePath: String, vararg subPath: String) {

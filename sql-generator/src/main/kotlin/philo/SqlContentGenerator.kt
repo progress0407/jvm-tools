@@ -2,7 +2,7 @@ package philo
 
 import mu.KLogger
 import mu.KotlinLogging
-import philo.log.infoGreen
+import io.philo.log.infoGreen
 
 @Suppress("SqlResolve", "SqlNoDataSourceInspection")
 class SqlContentGenerator {
