@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-was
+  namespace: ns-sample
+spec:
+  selector:
+    matchLabels:
+      pod-type: was
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        pod-type: was
+    spec:
+      subdomain: svc-db-router
+      containers:
+      - name: container
+        image: progress0407/app
+        envFrom:
+        - configMapRef:
+            name: cm-was
+        resources:
+          requests:
+            memory: 20Mi
+          limits:
+            memory: 300Mi
+      terminationGracePeriodSeconds: 0

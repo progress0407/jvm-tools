@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: cm-db
+ namespace: ns-1nginx-1was
+data:
+ MYSQL_DATABASE: "sample_app"
+ MYSQL_ROOT_HOST: "%"
+ MYSQL_ROOT_PASSWORD: "1234"
+ TZ: "Asia/Seoul"

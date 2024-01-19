@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: deploy-db
+  namespace: ns-sample
+spec:
+  selector:
+    matchLabels:
+      pod-type: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        pod-type: db
+    spec:
+      containers:
+      - name: container
+        image: mysql:8.0.3
+        ports:
+        - containerPort: 3306
+        envFrom:
+        - configMapRef:
+            name: cm-db
+        resources:
+          requests:
+            memory: 100Mi
+          limits:
+            memory: 1Gi
+      terminationGracePeriodSeconds: 0

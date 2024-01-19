@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: cm-was
+ namespace: ns-1nginx-1was
+data:
+ spring.profiles.active: 'local-mem'
+ server.port: '8080'
