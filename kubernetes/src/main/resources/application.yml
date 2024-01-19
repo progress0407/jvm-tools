@@ -1,0 +1,7 @@
+spring:
+  profiles.active: local-mem # default
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+user.server.version: 1

@@ -11,8 +11,9 @@ include 'lab',
         'msa:ms-1',
         'msa:ms-2',
         'redis',
-        'reactive-streams',
-        'reactive-with-spring',
+        'reactive-x:pure-reactive',
+        'reactive-x:webflux',
         'test-code',
-        'docker'
+        'docker',
+        'kubernetes'
 

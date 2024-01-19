@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 'jdbc:mysql://svc-db-router:3306/sample_app?useSSL=false&allowPublicKeyRetrieval=true' # todo
+    username: 'root' # todo
+    password: '1234' # todo

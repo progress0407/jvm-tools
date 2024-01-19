@@ -1,0 +1,24 @@
+FROM openjdk:17-jdk-slim
+
+EXPOSE 8080
+
+ARG SPRING_PROFILE=prod
+ARG SERVER_VERSION=1
+ARG SERVER_PORT=8080
+ARG DB_URL
+ARG DB_USERNAME
+ARG DB_PASSWORD
+
+ENV SPRING_PROFILE=$SPRING_PROFILE
+ENV SERVER_VERSION=$SERVER_VERSION
+ENV DB_URL=$DB_URL
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
+
+COPY './build/libs/*-0.0.1-SNAPSHOT.jar' '/app/app.jar'
+
+COPY './entrypoint.sh' '/app/entrypoint.sh'
+
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT [ "/bin/sh", "-c", "sh /app/entrypoint.sh" ]
