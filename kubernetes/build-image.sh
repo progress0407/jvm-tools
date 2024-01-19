@@ -7,7 +7,7 @@
 
 set -e
 # shellcheck disable=SC2039
-source ./color-echo.sh
+#. ./color-echo.sh
 
 SPRING_PROFILE=${1:-"local-mem"}
 
@@ -15,7 +15,7 @@ SPRING_PROFILE=${1:-"local-mem"}
 SHELL_COMMAND_PATH=$(pwd)
 CURRENT_FILE_PATH="$(dirname $0)"
 
-DOCKER_IMAGE_NAME="progress0407/simple-app"
+DOCKER_IMAGE_NAME="progress0407/app"
 DOCKER_FILE_PATH="./BuildJarDockerfile"
 DOCKER_CONTEXT_PATH="." # 실행 위치는 현재 모듈이라 가정
 

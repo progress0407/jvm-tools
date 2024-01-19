@@ -1,5 +1,8 @@
 #!/bin/sh
 
+CURRENT_FILE_PATH="$(dirname $0)"
+cd $CURRENT_FILE_PATH
+
 java \
   -Dspring.profiles.active="${SPRING_PROFILE}" \
   -jar app.jar

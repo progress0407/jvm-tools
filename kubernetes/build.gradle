@@ -6,5 +6,5 @@ dependencies {
 }
 
 ext {
-    imageName = 'progress0407/simple-app'
+    imageName = 'progress0407/app'
 }
