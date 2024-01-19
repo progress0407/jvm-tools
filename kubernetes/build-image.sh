@@ -17,7 +17,7 @@ CURRENT_FILE_PATH="$(dirname $0)"
 
 DOCKER_IMAGE_NAME="progress0407/simple-app"
 DOCKER_FILE_PATH="./BuildJarDockerfile"
-DOCKER_CONTEXT_PATH="../.."
+DOCKER_CONTEXT_PATH="." # 실행 위치는 현재 모듈이라 가정
 
 cd "$CURRENT_FILE_PATH"
 
