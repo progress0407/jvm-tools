@@ -3,7 +3,9 @@ package io.philo.k8s.app
 import io.philo.app.entity.PersonEntity
 import io.philo.app.repository.PersonRepository
 import jakarta.annotation.PostConstruct
+import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -35,8 +37,8 @@ class K8sController(
     @GetMapping("/version")
     fun version() = "current application version is $version, server uuid: $randomStr\n"
 
-    @GetMapping("/cookie")
-    fun cookie(request: HttpServletRequest): String {
+    @GetMapping("/cookie-from-client")
+    fun cookieFromClient(request: HttpServletRequest): String {
 
         val cookies = request.cookies
             ?: return "nothing any cookies!"
@@ -50,6 +52,17 @@ class K8sController(
             "nothing!"
         else
             "find it ! ${findCookie.value}"
+    }
+
+    @GetMapping("/cookie-from-server")
+    fun cookieFromServer(response: HttpServletResponse): String {
+
+        val cookie = Cookie("some-info", "this_is_only_your_cookie!")
+        cookie.path="/"
+        cookie.maxAge = 3600 // 1 hour
+        response.addCookie(cookie)
+
+        return "cookie is set, check!"
     }
 
 }
