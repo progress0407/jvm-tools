@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: deploy-db
-  namespace: ns-sample
+  namespace: ns-1nginx-1was
 spec:
+  serviceName: db
   selector:
     matchLabels:
       pod-type: db
