@@ -28,4 +28,13 @@ spec:
             memory: 20Mi
           limits:
             memory: 300Mi
+        readinessProbe:
+          httpGet:
+            path: /hi
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 5
+          successThreshold: 3
+          timeoutSeconds: 100
       terminationGracePeriodSeconds: 0
