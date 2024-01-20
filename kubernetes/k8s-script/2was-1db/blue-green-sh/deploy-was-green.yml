@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-was
+  name: deploy-was-green
   namespace: ns-sample
 spec:
   selector:
     matchLabels:
       pod-type: was
+      blue-green-type: green
   replicas: 1
   strategy:
     type: RollingUpdate
-  # minReadySeconds: 10
   template:
     metadata:
       labels:
         pod-type: was
+        blue-green-type: green
     spec:
       subdomain: svc-db-router
       containers:
@@ -28,13 +29,13 @@ spec:
             memory: 20Mi
           limits:
             memory: 300Mi
-        # readinessProbe:
-          # httpGet:
-            # path: /hi
-            # port: 8080
-            # scheme: HTTP
-          # initialDelaySeconds: 2
-          # periodSeconds: 2
-          # successThreshold: 2
-          # timeoutSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /hi
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 2
+          periodSeconds: 2
+          successThreshold: 2
+          timeoutSeconds: 60
       terminationGracePeriodSeconds: 0
