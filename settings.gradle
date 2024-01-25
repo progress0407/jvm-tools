@@ -15,5 +15,6 @@ include 'lab',
         'reactive-x:webflux',
         'test-code',
         'docker',
-        'kubernetes'
+        'kubernetes',
+        'hexagonal'
 
