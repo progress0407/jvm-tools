@@ -4,5 +4,5 @@ import java.math.BigDecimal
 
 
 interface WithdrawUseCase {
-    fun withdraw(id: Long?, amount: BigDecimal?): Boolean
+    fun withdraw(id: Long, amount: BigDecimal): Boolean
 }

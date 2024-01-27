@@ -3,7 +3,8 @@ package io.philo.hexagonal.app
 import java.math.BigDecimal
 
 
-class BankAccount (private val id: Long, var balance: BigDecimal) {
+class BankAccount (val id: Long,
+                   var balance: BigDecimal) {
 
     fun withdraw(amount: BigDecimal?): Boolean {
         if (balance.compareTo(amount) < 0) {

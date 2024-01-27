@@ -4,5 +4,5 @@ import java.math.BigDecimal
 
 
 interface DepositUseCase {
-    fun deposit(id: Long?, amount: BigDecimal?)
+    fun deposit(id: Long, amount: BigDecimal)
 }

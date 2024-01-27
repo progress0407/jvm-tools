@@ -4,5 +4,5 @@ import io.philo.hexagonal.app.BankAccount
 
 
 interface LoadAccountPort {
-    fun load(id: Long?): BankAccount?
+    fun load(id: Long): BankAccount
 }

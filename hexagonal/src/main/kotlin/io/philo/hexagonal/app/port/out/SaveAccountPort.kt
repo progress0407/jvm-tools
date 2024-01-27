@@ -4,5 +4,5 @@ import io.philo.hexagonal.app.BankAccount
 
 
 interface SaveAccountPort {
-    fun save(bankAccount: BankAccount?)
+    fun save(bankAccount: BankAccount)
 }
