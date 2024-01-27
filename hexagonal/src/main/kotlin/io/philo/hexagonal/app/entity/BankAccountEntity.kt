@@ -13,8 +13,10 @@ class BankAccountEntity(
     val id: Long? = null,
 
     @Column
-    var balance: BigDecimal = BigDecimal.valueOf(0)
+    var balance: BigDecimal
 ) {
 
     constructor(balance: BigDecimal) : this(null, balance)
+
+    constructor() : this(BigDecimal.valueOf(0))
 }
