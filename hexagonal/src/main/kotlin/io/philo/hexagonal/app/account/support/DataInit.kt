@@ -1,8 +1,7 @@
-package io.philo.hexagonal.app.support
+package io.philo.hexagonal.app.account.support
 
-import io.philo.hexagonal.app.BankAccount
-import io.philo.hexagonal.app.entity.BankAccountEntity
-import io.philo.hexagonal.app.repository.BankAccountSpringDataRepository
+import io.philo.hexagonal.app.account.entity.BankAccountEntity
+import io.philo.hexagonal.app.account.adapter.out.BankAccountSpringDataRepository
 import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Component
 

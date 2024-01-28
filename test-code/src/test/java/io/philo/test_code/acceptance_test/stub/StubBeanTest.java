@@ -1,6 +1,6 @@
 package io.philo.test_code.acceptance_test.stub;
 
-import io.philo.test_code.acceptance_test.AcceptanceTest;
+import io.philo.test_code.acceptance_test.AbstractAcceptanceTest;
 import io.philo.test_code.app.bean.Child;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * - @TestConfiguration만 있을 경우
  */
 @Import(TestStubBeanConfig.class)
-public class StubBeanTest extends AcceptanceTest {
+public class StubBeanTest extends AbstractAcceptanceTest {
 
 
     @Autowired

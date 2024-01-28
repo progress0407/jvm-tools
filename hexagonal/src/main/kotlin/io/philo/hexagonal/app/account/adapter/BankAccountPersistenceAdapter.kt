@@ -1,11 +1,11 @@
-package io.philo.hexagonal.app.adapter
+package io.philo.hexagonal.app.account.adapter
 
-import io.philo.hexagonal.app.BankAccount
-import io.philo.hexagonal.app.entity.BankAccountEntity
-import io.philo.hexagonal.app.mapper.BankAccountMapper
-import io.philo.hexagonal.app.port.out.LoadAccountPort
-import io.philo.hexagonal.app.port.out.SaveAccountPort
-import io.philo.hexagonal.app.repository.BankAccountSpringDataRepository
+import io.philo.hexagonal.app.account.domain.BankAccount
+import io.philo.hexagonal.app.account.entity.BankAccountEntity
+import io.philo.hexagonal.app.account.mapper.BankAccountMapper
+import io.philo.hexagonal.app.account.application.port.out.LoadAccountPort
+import io.philo.hexagonal.app.account.application.port.out.SaveAccountPort
+import io.philo.hexagonal.app.account.adapter.out.BankAccountSpringDataRepository
 import org.springframework.stereotype.Repository
 
 

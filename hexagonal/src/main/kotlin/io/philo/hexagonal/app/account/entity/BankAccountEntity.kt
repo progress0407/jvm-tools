@@ -1,4 +1,4 @@
-package io.philo.hexagonal.app.entity
+package io.philo.hexagonal.app.account.entity
 
 import jakarta.persistence.*
 import java.math.BigDecimal

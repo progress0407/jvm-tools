@@ -1,11 +1,10 @@
-package io.philo.hexagonal.app.service
+package io.philo.hexagonal.app.account.application
 
-import io.philo.hexagonal.app.BankAccount
-import io.philo.hexagonal.app.port.`in`.DepositUseCase
-import io.philo.hexagonal.app.port.`in`.WithdrawUseCase
-import io.philo.hexagonal.app.port.out.LoadAccountPort
-import io.philo.hexagonal.app.port.out.SaveAccountPort
-import org.springframework.beans.factory.annotation.Autowired
+import io.philo.hexagonal.app.account.domain.BankAccount
+import io.philo.hexagonal.app.account.application.port.`in`.DepositUseCase
+import io.philo.hexagonal.app.account.application.port.`in`.WithdrawUseCase
+import io.philo.hexagonal.app.account.application.port.out.LoadAccountPort
+import io.philo.hexagonal.app.account.application.port.out.SaveAccountPort
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 

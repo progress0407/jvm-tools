@@ -12,7 +12,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AcceptanceTest {
+public abstract class AbstractAcceptanceTest {
 
     @LocalServerPort
     int port;

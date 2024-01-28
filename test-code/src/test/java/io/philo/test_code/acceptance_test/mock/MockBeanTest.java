@@ -1,6 +1,6 @@
 package io.philo.test_code.acceptance_test.mock;
 
-import io.philo.test_code.acceptance_test.AcceptanceTest;
+import io.philo.test_code.acceptance_test.AbstractAcceptanceTest;
 import io.philo.test_code.app.bean.Child;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-public class MockBeanTest extends AcceptanceTest {
+public class MockBeanTest extends AbstractAcceptanceTest {
 
 
     @MockBean

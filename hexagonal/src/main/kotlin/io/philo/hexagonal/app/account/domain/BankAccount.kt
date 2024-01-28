@@ -1,4 +1,4 @@
-package io.philo.hexagonal.app
+package io.philo.hexagonal.app.account.domain
 
 import java.math.BigDecimal
 

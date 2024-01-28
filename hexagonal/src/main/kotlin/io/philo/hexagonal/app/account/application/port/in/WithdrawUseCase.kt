@@ -1,4 +1,4 @@
-package io.philo.hexagonal.app.port.`in`
+package io.philo.hexagonal.app.account.application.port.`in`
 
 import java.math.BigDecimal
 

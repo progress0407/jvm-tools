@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.springframework.http.HttpStatus.CREATED;
 
-public class PersonAcceptanceTest extends AcceptanceTest {
+public class PersonAcceptanceTest extends AbstractAcceptanceTest {
 
     @Autowired
     PersonRepository repository;
