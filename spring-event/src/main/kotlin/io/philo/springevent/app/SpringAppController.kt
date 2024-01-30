@@ -18,7 +18,7 @@ class SpringAppController(
     @PostMapping("/generate-event")
     fun generateEvent(@RequestBody request: PreDomainRequestDto) {
 
-        preDomainService.execute(request.id, request.percent)
+        preDomainService.execute(request.id, request.percent, request.ex)
     }
 
     @GetMapping("/events")

@@ -10,6 +10,6 @@ class PostDomainEventHandler(private val postDomainService: PostDomainService) {
     @EventListener
     fun handleEvent(event: PreDomainEvent) {
 
-        postDomainService.execute(event.preDomainId, event.percent)
+        postDomainService.execute(event.preDomainId, event.percent, event.ex)
     }
 }

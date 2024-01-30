@@ -11,10 +11,10 @@ class PreDomainService(private val preDomainRepository: PreDomainRepository,
 ) {
 
     @Transactional
-    fun execute(id: Long, percent: Int) {
+    fun execute(id: Long, percent: Int, ex: Boolean) {
 
         val preEntity = preDomainRepository.findById(id).orElseThrow { IllegalArgumentException("Not Found Entity.") }
         preEntity.updateValueByPercent(percent)
-        eventPublisher.publishEvent(PreDomainEvent(id, percent))
+        eventPublisher.publishEvent(PreDomainEvent(id, percent, ex))
     }
 }

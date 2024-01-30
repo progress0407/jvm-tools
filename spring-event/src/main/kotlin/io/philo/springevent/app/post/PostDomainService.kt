@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional
 class PostDomainService(private val postDomainRepository: PostDomainRepository) {
 
     @Transactional
-    fun execute(id: Long, percent: Int) {
+    fun execute(id: Long, percent: Int, ex: Boolean) {
 
         val postEntity = postDomainRepository.findById(id).orElseThrow { IllegalArgumentException("Not Found Entity.") }
         postEntity.updateValueByPercent(percent)
-        throwRuntimeException()
+        if (ex) throwRuntimeException()
     }
 
     private fun throwRuntimeException() {
