@@ -11,5 +11,11 @@ class PostDomainService(private val postDomainRepository: PostDomainRepository) 
 
         val postEntity = postDomainRepository.findById(id).orElseThrow { IllegalArgumentException("Not Found Entity.") }
         postEntity.updateValueByPercent(percent)
+        throwRuntimeException()
+    }
+
+    private fun throwRuntimeException() {
+
+        throw RuntimeException("하지만 런타임 익셉션이 발생하면 어떨까? 익!셉!션!")
     }
 }
