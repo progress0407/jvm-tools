@@ -16,5 +16,6 @@ include 'lab',
         'test-code',
         'docker',
         'kubernetes',
-        'hexagonal'
+        'hexagonal',
+        'spring-event'
 
