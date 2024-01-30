@@ -5,10 +5,12 @@ spring:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    leaseRenewalIntervalInSeconds: 1
+    leaseRenewalIntervalInSeconds: 5
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
     registry-fetch-interval-seconds: 1
+    eureka-server-connect-timeout-seconds: 6000
+    eureka-server-read-timeout-seconds: 6000
