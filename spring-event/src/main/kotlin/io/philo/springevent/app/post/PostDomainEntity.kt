@@ -21,6 +21,6 @@ class PostDomainEntity(
 
     fun updateValueByPercent(percent: Int) {
 
-        this.value += value * (percent / 100)
+        this.value += (value * (percent / 100.0)).toInt()
     }
 }
