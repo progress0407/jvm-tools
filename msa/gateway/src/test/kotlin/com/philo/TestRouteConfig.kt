@@ -1,6 +1,6 @@
 package com.philo
 
-import com.philo.config.AuthFilter
+import io.philo.config.AuthFilter
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.cloud.gateway.route.RouteLocator
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
@@ -12,7 +12,8 @@ class TestRouteConfig {
 
     @Bean("testRoute")
     fun testRoute(builder: RouteLocatorBuilder,
-                  authFilter: AuthFilter): RouteLocator {
+                  authFilter: AuthFilter
+    ): RouteLocator {
 
         return builder.routes()
             .route {

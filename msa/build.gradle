@@ -1,3 +1,9 @@
+subprojects {
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
+    }
+}
+
 project("eureka") {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
@@ -16,11 +22,13 @@ project("gateway") {
 project("ms-1") {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+        implementation project(':msa:common')
     }
 }
 
 project("ms-2") {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+        implementation project(':msa:common')
     }
 }

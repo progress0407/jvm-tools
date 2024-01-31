@@ -1,4 +1,4 @@
-package com.philo.config
+package io.philo.config
 
 import mu.KotlinLogging
 import org.springframework.cloud.gateway.filter.GatewayFilter

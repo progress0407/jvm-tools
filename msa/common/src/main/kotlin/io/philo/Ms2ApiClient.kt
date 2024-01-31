@@ -1,0 +1,11 @@
+package io.philo
+
+import org.springframework.cloud.openfeign.FeignClient
+import org.springframework.web.bind.annotation.GetMapping
+
+@FeignClient
+interface Ms2ApiClient {
+
+    @GetMapping("/ms2/internal/some-api")
+    fun someApi() : SomeApiDto
+}

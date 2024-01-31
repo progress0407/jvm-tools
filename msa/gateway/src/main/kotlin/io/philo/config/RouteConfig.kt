@@ -1,4 +1,4 @@
-package com.philo.config
+package io.philo.config
 
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.route.Route
@@ -14,7 +14,8 @@ import org.springframework.http.HttpMethod.*
 
 @Configuration
 class RouteConfig(private val loggingFilter: GlobalLoggingFilter,
-                  private val authFilter: AuthFilter) {
+                  private val authFilter: AuthFilter
+) {
 
     @Bean
     fun routes(builder: RouteLocatorBuilder, loggingFilter: GlobalLoggingFilter): RouteLocator {

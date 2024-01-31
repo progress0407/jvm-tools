@@ -1,7 +1,7 @@
 package com.philo
 
-import com.philo.config.AuthFilter
-import com.philo.config.GlobalLoggingFilter
+import io.philo.config.AuthFilter
+import io.philo.config.GlobalLoggingFilter
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import jakarta.annotation.PostConstruct

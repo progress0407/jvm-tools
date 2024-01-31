@@ -1,5 +1,6 @@
-package com.philo
+package io.philo.app
 
+import io.philo.Ms2ApiClient
 import mu.KotlinLogging
 import org.springframework.cloud.client.ServiceInstance
 import org.springframework.cloud.client.discovery.DiscoveryClient
@@ -7,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class JustController(val discoveryClient: DiscoveryClient) {
+class Ms1Controller(
+    private val discoveryClient: DiscoveryClient,
+    private val ms2ApiClient: Ms2ApiClient,
+) {
 
     private val log = KotlinLogging.logger { }
 
@@ -42,5 +46,13 @@ class JustController(val discoveryClient: DiscoveryClient) {
         return discoveryClient.services.associateWith { serviceId ->
             discoveryClient.getInstances(serviceId)
         }
+    }
+
+    @GetMapping("/ms1/internal/execute")
+    fun internalExecute(): String {
+
+        val ms2Dto = ms2ApiClient.someApi()
+
+        return "ms1 message, ${ms2Dto.message}"
     }
 }
