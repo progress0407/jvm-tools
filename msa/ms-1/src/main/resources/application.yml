@@ -12,6 +12,11 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     registry-fetch-interval-seconds: 6000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 #  management.endpoints.web.exposure.include=*
 #  management.endpoint.shutdown.enabled=true
@@ -25,3 +30,4 @@ management:
     web:
       exposure:
         include: shutdown,info
+

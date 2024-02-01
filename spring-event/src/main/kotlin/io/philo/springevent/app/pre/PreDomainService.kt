@@ -15,6 +15,7 @@ class PreDomainService(private val preDomainRepository: PreDomainRepository,
 
         val preEntity = preDomainRepository.findById(id).orElseThrow { IllegalArgumentException("Not Found Entity.") }
         preEntity.updateValueByPercent(percent)
+//        preDomainRepository.save(preEntity)
         eventPublisher.publishEvent(PreDomainEvent(id, percent, ex))
     }
 }

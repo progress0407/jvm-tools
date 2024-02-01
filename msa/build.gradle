@@ -2,12 +2,14 @@ subprojects {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
         implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1'
+        implementation 'org.springframework.boot:spring-boot-starter-amqp'
     }
 }
 
 project("eureka") {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+        implementation project(':msa:common')
     }
 }
 

@@ -10,6 +10,7 @@ include 'lab',
         'msa:gateway',
         'msa:ms-1',
         'msa:ms-2',
+        'msa:common',
         'redis',
         'reactive-x:pure-reactive',
         'reactive-x:webflux',
@@ -18,4 +19,6 @@ include 'lab',
         'kubernetes',
         'hexagonal',
         'spring-event'
+//include 'msa:common'
+//findProject(':msa:common')?.name = 'common'
 
