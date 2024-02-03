@@ -12,3 +12,15 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     registry-fetch-interval-seconds: 1
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "refresh"
+          - "info"
+          - "busrefresh"
+          - "health"
+

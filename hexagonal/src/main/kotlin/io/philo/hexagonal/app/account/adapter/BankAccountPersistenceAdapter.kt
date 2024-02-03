@@ -6,6 +6,8 @@ import io.philo.hexagonal.app.account.mapper.BankAccountMapper
 import io.philo.hexagonal.app.account.application.port.out.LoadAccountPort
 import io.philo.hexagonal.app.account.application.port.out.SaveAccountPort
 import io.philo.hexagonal.app.account.adapter.out.BankAccountSpringDataRepository
+import org.springframework.data.jpa.repository.Query
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 
 
