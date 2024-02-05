@@ -11,7 +11,7 @@ import org.springframework.transaction.event.TransactionalEventListener
 class PostDomainEventHandler(private val postDomainService: PostDomainService) {
 
     @EventListener
-//    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // default
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // default
     fun handleEvent(event: PreDomainEvent) {
 
         postDomainService.execute(event.preDomainId, event.percent, event.ex)
