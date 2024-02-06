@@ -10,7 +10,7 @@ import org.springframework.transaction.event.TransactionalEventListener
 @Component
 class PostDomainEventHandler(private val postDomainService: PostDomainService) {
 
-    @EventListener
+//    @EventListener
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // default
     fun handleEvent(event: PreDomainEvent) {
 
