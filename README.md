@@ -16,4 +16,4 @@
 | spring-batch  | 스프링 배치 뼈대 코드 작성                           |
 | sql-generator | SQL 동적 생성기 구현 (넘블 프로젝트 당시)                |
 | test-cdoe     | 테스트 코드 응용 상황에 대한 대표적인 예시 모음               |
-
+| spring-event  | 스프링 내부 이벤트, 성능 테스트 코드 작성                  |
