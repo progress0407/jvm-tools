@@ -1,4 +1,4 @@
-package io.philo.hexagonal.app.account.tmp_rest
+package io.philo.app
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

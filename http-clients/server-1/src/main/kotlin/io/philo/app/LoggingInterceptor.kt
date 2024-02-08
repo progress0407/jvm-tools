@@ -1,52 +1,17 @@
-package io.philo.springevent.app.tmp_rest
+package io.philo.app
 
 import mu.KotlinLogging
-import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.http.HttpRequest
-import org.springframework.http.client.*
-import org.springframework.scheduling.annotation.Scheduled
-import org.springframework.stereotype.Component
-import org.springframework.web.client.RestTemplate
+import org.springframework.http.client.ClientHttpRequestExecution
+import org.springframework.http.client.ClientHttpRequestInterceptor
+import org.springframework.http.client.ClientHttpResponse
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
-import java.time.Duration
-import java.util.function.Supplier
 import java.util.stream.Collectors
 
-
-/**
- * todo! 리펙터링 대상, 별도 모듈로 분리할 것
- */
-@Component
-class TmpClientModule {
-
-    private val log = KotlinLogging.logger { }
-
-    private lateinit var restTemplate: RestTemplate
-
-    init {
-
-        val timeOut = Duration.ofSeconds(1_200)
-        restTemplate = RestTemplateBuilder()
-            .setConnectTimeout(timeOut)
-            .setReadTimeout(timeOut)
-            .additionalInterceptors(LoggingInterceptor())
-            .requestFactory(Supplier { BufferingClientHttpRequestFactory(SimpleClientHttpRequestFactory()) })
-            .build()
-    }
-
-    @Scheduled(fixedDelay = 1_000)
-    fun caller() {
-
-        val result = restTemplate.getForEntity("http://localhost:8081/listen", String::class.java);
-
-        log.info { "something doing -- status: ${result.statusCode}, return value: ${result.body}" }
-    }
-}
-
-internal class LoggingInterceptor : ClientHttpRequestInterceptor {
+class LoggingInterceptor : ClientHttpRequestInterceptor {
 
     private val log = KotlinLogging.logger { }
 
@@ -80,4 +45,3 @@ internal class LoggingInterceptor : ClientHttpRequestInterceptor {
         )
     }
 }
-
