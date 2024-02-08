@@ -18,4 +18,7 @@ include 'lab',
         'docker',
         'kubernetes',
         'hexagonal',
-        'spring-event'
+        'spring-event',
+        'http-clients',
+        'http-clients:server-1',
+        'http-clients:server-2'

@@ -26,17 +26,6 @@ class TmpClientModule {
 
     private lateinit var restTemplate: RestTemplate
 
-    /*
-        init {
-
-            val timeout = 1_200_000 // 20 minutes in milliseconds
-            val factory = SimpleClientHttpRequestFactory()
-            factory.setReadTimeout(timeout)
-            factory.setConnectTimeout(timeout)
-            restTemplate = RestTemplate(factory)
-        }
-    */
-
     init {
 
         val timeOut = Duration.ofSeconds(1_200)

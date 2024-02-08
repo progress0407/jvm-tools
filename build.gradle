@@ -8,6 +8,9 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.allopen' version '1.8.22'
 }
 
+bootJar.enabled = false
+jar.enabled = true
+
 allprojects {
     group = 'io.philo'
     version = '0.0.1-SNAPSHOT'
@@ -30,12 +33,15 @@ subprojects {
         sourceCompatibility = '17'
     }
 
-    tasks.withType(KotlinCompile) {
+    tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             freeCompilerArgs += '-Xjsr305=strict'
             jvmTarget = '17'
         }
     }
+
+    bootJar.enabled = true
+    jar.enabled = true
 
     dependencies {
         // Kotlin

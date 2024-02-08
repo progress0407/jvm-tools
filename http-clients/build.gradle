@@ -1,0 +1,11 @@
+bootJar.enabled = false
+jar.enabled = true
+
+subprojects {
+    bootJar.enabled = true
+    jar.enabled = true
+}
+
+dependencies {
+
+}
