@@ -3,10 +3,7 @@ package io.philo.config
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.route.Route
 import org.springframework.cloud.gateway.route.RouteLocator
-import org.springframework.cloud.gateway.route.builder.BooleanSpec
-import org.springframework.cloud.gateway.route.builder.Buildable
-import org.springframework.cloud.gateway.route.builder.PredicateSpec
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
+import org.springframework.cloud.gateway.route.builder.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -37,7 +34,7 @@ class RouteConfig(private val loggingFilter: GlobalLoggingFilter,
             pathSpec.and().method(*methods)
 
         return pathSpec
-            .filters { filterSpec ->
+            .filters { filterSpec: GatewayFilterSpec ->
 
                 filterSpec.removeRequestHeader("Cookie")
                     .rewritePath("$path(?<segment>/?.*)", "$\\{segment}") // ex. /order/1 -> /1
