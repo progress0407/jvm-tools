@@ -4,17 +4,21 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
-class PersonEntity {
-
+class PersonEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
+    var id: Long? = null,
 
     @Column(nullable = false)
-    var name = ""
+    var name: String = "",
+) {
 
-    constructor() {
-        this.name = UUID.randomUUID().toString()
+    constructor(name: String) : this(id = null, name = name)
+
+    constructor() : this(name = UUID.randomUUID().toString())
+
+    override fun toString(): String {
+        return "PersonEntity(id=$id, name='$name')"
     }
 }
