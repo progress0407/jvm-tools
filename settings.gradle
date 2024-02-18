@@ -21,4 +21,5 @@ include 'lab',
         'spring-event',
         'http-clients',
         'http-clients:server-1',
-        'http-clients:server-2'
+        'http-clients:server-2',
+        'jpa'
