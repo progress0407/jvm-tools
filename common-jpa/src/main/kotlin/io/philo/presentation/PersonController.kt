@@ -1,7 +1,7 @@
-package io.philo.app.presentation
+package io.philo.presentation
 
-import io.philo.app.entity.PersonEntity
-import io.philo.app.repository.PersonRepository
+import io.philo.entity.PersonEntity
+import io.philo.repository.PersonRepository
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

@@ -1,7 +1,7 @@
 package io.philo.k8s.app
 
-import io.philo.app.entity.PersonEntity
-import io.philo.app.repository.PersonRepository
+import io.philo.entity.PersonEntity
+import io.philo.repository.PersonRepository
 import jakarta.annotation.PostConstruct
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest

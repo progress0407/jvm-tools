@@ -1,4 +1,4 @@
-package io.philo.app.entity
+package io.philo.entity
 
 import jakarta.persistence.*
 import java.util.*

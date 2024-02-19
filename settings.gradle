@@ -22,4 +22,5 @@ include 'lab',
         'http-clients',
         'http-clients:server-1',
         'http-clients:server-2',
-        'jpa'
+        'jpa',
+        'flyway'

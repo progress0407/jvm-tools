@@ -1,4 +1,4 @@
-package io.philo.app
+package io.philo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
