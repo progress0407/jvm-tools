@@ -9,7 +9,7 @@ plugins {
 }
 
 bootJar.enabled = false
-jar.enabled = true
+jar.enabled = false
 
 allprojects {
     group = 'io.philo'
@@ -41,7 +41,7 @@ subprojects {
     }
 
     bootJar.enabled = true
-    jar.enabled = true
+    jar.enabled = false
 
     dependencies {
         // Kotlin
