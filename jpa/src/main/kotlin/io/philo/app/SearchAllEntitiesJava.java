@@ -3,15 +3,12 @@ package io.philo.app;
 import static java.lang.System.out;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Table;
 import jakarta.persistence.metamodel.Type;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class SearchAllEntitiesJava {
@@ -32,7 +29,7 @@ public class SearchAllEntitiesJava {
 
     List<String> dmls = allTableNames.stream()
         .map(tableName -> "update " + tableName + " set some_column = that where id = some_id")
-        .collect(Collectors.toList());
+        .toList();
 
     dmls.forEach(System.out::println);
   }
@@ -47,7 +44,7 @@ public class SearchAllEntitiesJava {
   private String convertTableName(Class<?> entityMetaInfo) {
     Table tableInfo = entityMetaInfo.getAnnotation(Table.class);
     if (tableInfo != null) {
-      return tableInfo.name()
+      return tableInfo.name();
     }
     return  toSnakeCase(entityMetaInfo.getSimpleName());
   }

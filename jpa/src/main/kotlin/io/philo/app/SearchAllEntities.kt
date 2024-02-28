@@ -1,7 +1,6 @@
 package io.philo.app
 
 import jakarta.annotation.PostConstruct
-import jakarta.persistence.Entity
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.persistence.Table
