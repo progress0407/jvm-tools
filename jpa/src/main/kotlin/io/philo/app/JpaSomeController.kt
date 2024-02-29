@@ -1,5 +1,6 @@
 package io.philo.app
 
+import io.philo.app.one_to_one.MemberService
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
