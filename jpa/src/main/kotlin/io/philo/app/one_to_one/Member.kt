@@ -13,6 +13,7 @@ class Member(username: String) {
 
     var username: String = username
         protected set
+
     @OneToOne(mappedBy = "member", cascade = [CascadeType.ALL], orphanRemoval = true)
     var locker: Locker = Locker("default",this)
 
