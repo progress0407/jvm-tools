@@ -7,6 +7,7 @@ import jakarta.persistence.Id
 
 @Entity
 class Girl(name: String) {
+
     @Id @GeneratedValue
     var id: Long? = null
         protected set
