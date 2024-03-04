@@ -5,6 +5,7 @@ import jakarta.persistence.*
 
 @Entity
 class Member(username: String) {
+
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
