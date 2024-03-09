@@ -1,14 +1,17 @@
-package io.philo.app.many_to_many
+package io.philo.app.many_to_one
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.Table
 
 @Entity
-class Boy(name: String) {
+@Table(name = "orders")
+class Order(name: String) {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     var id: Long? = null
         protected set
 
