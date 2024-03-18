@@ -22,13 +22,11 @@ class JpaSomeController(
 
     @GetMapping
     fun getLocalDateTime(): LocalDateTime {
-
         return LocalDateTime.now()
     }
 
     @GetMapping("/2")
     fun getLocalDate(): LocalDate {
-
         return LocalDate.now()
     }
 
