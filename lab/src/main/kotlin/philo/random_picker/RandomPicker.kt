@@ -3,38 +3,55 @@ package philo.random_picker
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+
 class RandomPicker {
 
-    private val groupDistributor = GroupDistributor();
+    companion object {
+        private const val INPUT_PEOPLE_MESSAGE = """
+                그룹을 나눌 사람들의 이름을 입력해주세요. 가능한 한 균등하게 나누어줍니다.
+                만일 "END"를 입력하면 종료됩니다.
+                e.g. 성우, 필즈
+                """
 
-    fun run() {
-        println(
-            """
-        사람들 정보를 입력해주세요. 균등하게 나누어줍니다.
-        e.g. 성우, 필즈
-        """.trimIndent()
-        )
+        private const val INPUT_GROUP_NUMBER_AND_MINIMUM_PEOPLE_SIZE_MESAGE = """
+                그룹의 갯수와 최소 인원수를 정해주세요.
+                e.g. 4 2
+                """
 
-        val br = BufferedReader(InputStreamReader(System.`in`))
-        val people = br.readLine().split(" ").toMutableList()
+        private const val CONTINUE_OR_END_MESSAGE = "계속 진행하려면 아무키나 누르십시오. 만일 END를 입력하면 종료됩니다."
 
-        println(people)
-        println(
-            """
-            그룹의 갯수와 최소 인원수를 정해주세요.
-            e.g. 4 2
-        """.trimIndent()
-        )
-        val (groupNumber, minimumGroupSize) = br.readLine().split(" ").map { it.toInt() }
+        private const val GROUP_DIVIDED_RESULT_MESSAGE = "그룹 나누기 결과: "
 
-        val shuffledPeopleGroups = shuffleUserAndGetNew(people, groupNumber, minimumGroupSize)
-
-        for (shuffledPeopleGroup in shuffledPeopleGroups) {
-            println(shuffledPeopleGroup)
-        }
+        private const val EXIT_MESSAGE = "END 입력으로 프로그램을 종료합니다."
     }
 
-    private fun shuffleUserAndGetNew(
+    private val groupDistributor = GroupDistributor()
+
+    fun run() {
+        val br = BufferedReader(InputStreamReader(System.`in`))
+
+        while (true) {
+            println(INPUT_PEOPLE_MESSAGE.trimIndent())
+            val people = br.readLine().split(" ").toMutableList()
+
+            println(INPUT_GROUP_NUMBER_AND_MINIMUM_PEOPLE_SIZE_MESAGE.trimIndent())
+            val (groupNumber, minimumGroupSize) = br.readLine().split(" ").map { it.toInt() }
+            val shuffledPeopleGroups = shufflePeopleAndMakeGroups(people, groupNumber, minimumGroupSize)
+
+            println(GROUP_DIVIDED_RESULT_MESSAGE)
+            printPeopleGroupsResult(shuffledPeopleGroups)
+
+            println(CONTINUE_OR_END_MESSAGE)
+            if (br.readLine().uppercase() == "END") {
+                println(EXIT_MESSAGE)
+                break
+            }
+        }
+
+        br.close()
+    }
+
+    private fun shufflePeopleAndMakeGroups(
         people: MutableList<String>,
         groupNumber: Int,
         minimumGroupSize: Int
@@ -65,6 +82,11 @@ class RandomPicker {
             finalShuffledPeopleGroups.add(peopleSubGroup)
         }
         return finalShuffledPeopleGroups
+    }
+
+    private fun printPeopleGroupsResult(shuffledPeopleGroups: List<List<String>>) {
+        for (shuffledPeopleGroup in shuffledPeopleGroups)
+            println(shuffledPeopleGroup)
     }
 }
 
