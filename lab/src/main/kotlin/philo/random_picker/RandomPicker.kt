@@ -36,10 +36,11 @@ class RandomPicker {
 
             println(INPUT_GROUP_NUMBER_AND_MINIMUM_PEOPLE_SIZE_MESAGE.trimIndent())
             val (groupNumber, minimumGroupSize) = br.readLine().split(" ").map { it.toInt() }
-            val shuffledPeopleGroups = shufflePeopleAndMakeGroups(people, groupNumber, minimumGroupSize)
+            val shuffledPeopleGroups =
+                shufflePeopleAndMakeGroups(people, groupNumber, minimumGroupSize)
 
             println(GROUP_DIVIDED_RESULT_MESSAGE)
-            printPeopleGroupsResult(shuffledPeopleGroups)
+            printPeopleGroups(shuffledPeopleGroups)
 
             println(CONTINUE_OR_END_MESSAGE)
             if (br.readLine().uppercase() == "END") {
@@ -50,6 +51,7 @@ class RandomPicker {
 
         br.close()
     }
+
 
     private fun shufflePeopleAndMakeGroups(
         people: MutableList<String>,
@@ -72,27 +74,29 @@ class RandomPicker {
         dividedNumber: List<Int>,
         people: MutableList<String>
     ): List<List<String>> {
-        val finalShuffledPeopleGroups: MutableList<List<String>> = ArrayList<List<String>>()
+
+        val peopleGroups = ArrayList<List<String>>()
+
         for (groupSize in dividedNumber) {
-            val peopleSubGroup = ArrayList<String>()
+            val peopleGroup = ArrayList<String>()
             for (i in 0 until groupSize) {
                 val poppedPerson = people.removeAt(0)
-                peopleSubGroup.add(poppedPerson)
+                peopleGroup.add(poppedPerson)
             }
-            finalShuffledPeopleGroups.add(peopleSubGroup)
+            peopleGroups.add(peopleGroup)
         }
-        return finalShuffledPeopleGroups
+
+        return peopleGroups
     }
 
-    private fun printPeopleGroupsResult(shuffledPeopleGroups: List<List<String>>) {
+    private fun printPeopleGroups(shuffledPeopleGroups: List<List<String>>) {
+
         for (shuffledPeopleGroup in shuffledPeopleGroups)
             println(shuffledPeopleGroup)
     }
 }
 
-
 fun main() {
     val randomPicker = RandomPicker()
     randomPicker.run()
 }
-
