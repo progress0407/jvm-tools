@@ -10,17 +10,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
-//
 /**
- * $ ./gradlew :lab:jar -PmainClass=philo.random_picker.RandomPickerKt
+ * $ ./gradlew :lab:build-random-picker-jar -PmainClass=philo.random_picker.RandomPickerKt
  * $ java -jar lab/build/libs/lab-0.0.1-SNAPSHOT-plain.jar
  */
-//application {
-//    mainClass = project.getProperty("mainClass") // 'philo.random_picker.RandomPickerKt'
-//    println("mainClass: ${project.getProperty("mainClass")}")
-//}
-
-tasks.register('executableJar') {
+tasks.register('build-random-picker-jar', Jar) {
     if (project.hasProperty("mainClass")) {
 
         application.mainClass = project.getProperty("mainClass")
@@ -36,14 +30,24 @@ tasks.register('executableJar') {
             }
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         }
+    } else {
+        throw new GradleException('The mainClass property is not defined.')
     }
 }
 
-//if (!project.hasProperty('mainClass')) {
-//    throw new GradleException('The mainClass property is not defined.')
-//} else {
-//    application.mainClass = "${mainClass}"
-//}
+tasks.register('build-random-picker-auto-jar', Jar) {
 
+    application.mainClass = 'philo.random_picker.RandomPickerKt'
 
-
+    jar {
+        manifest {
+            attributes(
+                    'Main-Class': application.mainClass
+            )
+        }
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+}
