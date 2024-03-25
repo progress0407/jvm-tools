@@ -20,6 +20,7 @@ public class FutureMain {
         var threadPool = Executors.newFixedThreadPool(availableProcessors);
         List<CompletableFuture<String>> futures = new ArrayList<>();
 
+        long t1 = System.currentTimeMillis();
         for (int i = 0; i < 32; i++) {
             out.println(i + ": future submit");
             var completableFuture = CompletableFuture.supplyAsync(task(), threadPool);
@@ -27,8 +28,9 @@ public class FutureMain {
         }
 
         futures.forEach(CompletableFuture::join);
+        long t2 = System.currentTimeMillis();
         threadPool.shutdown();
-        out.println("All tasks are completed");
+        out.println("All tasks are completed: " + (t2 - t1) + " ms");
 
         for (Future<String> future : futures) {
             String result = future.get();

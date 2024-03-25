@@ -3,6 +3,11 @@
 sql-generator/sql/**
 
 
+### DB Files ###
+chat/mongodb/**
+chat/data/**
+
+
 ### Compiled class file ###
 *.class
 
