@@ -9,7 +9,7 @@ plugins {
 }
 
 bootJar.enabled = false
-jar.enabled = false
+jar.enabled = true
 
 allprojects {
     group = 'io.philo'

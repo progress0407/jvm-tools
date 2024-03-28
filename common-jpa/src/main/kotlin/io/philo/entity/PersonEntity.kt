@@ -18,6 +18,10 @@ class PersonEntity(
 
     constructor() : this(name = UUID.randomUUID().toString())
 
+    fun changeName(name: String) {
+        this.name = name
+    }
+
     override fun toString(): String {
         return "PersonEntity(id=$id, name='$name')"
     }

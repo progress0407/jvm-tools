@@ -1,6 +1,7 @@
 package io.philo.app
 
 import io.philo.app.many_to_one.OrderService
+import io.philo.app.tx_with_query.TxWithQueryService
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
@@ -11,7 +12,8 @@ import java.time.LocalDateTime
 @Transactional
 class JpaSomeController(
     private val jpaSomeRepository: JpaSomeRepository,
-    private val orderService: OrderService
+    private val orderService: OrderService,
+    private val txWithQueryService: TxWithQueryService
 ) {
 
     @PostMapping
@@ -43,5 +45,10 @@ class JpaSomeController(
     @GetMapping("/cascade-2/{orderHistoryId}")
     fun cascade2(@PathVariable orderHistoryId: Long): String {
         return orderService.order2(orderHistoryId)
+    }
+
+    @PostMapping("/tx-test-with-query")
+    fun tx_test_with_query() {
+        txWithQueryService.tx_test_1()
     }
 }

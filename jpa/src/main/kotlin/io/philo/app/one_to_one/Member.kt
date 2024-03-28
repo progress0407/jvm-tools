@@ -5,9 +5,8 @@ import jakarta.persistence.*
 
 @Entity
 class Member(username: String) {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
     var id: Long? = null
         protected set
@@ -16,7 +15,11 @@ class Member(username: String) {
         protected set
 
     @OneToOne(mappedBy = "member", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var locker: Locker = Locker("default",this)
+    var locker: Locker = Locker("default", this)
 
     protected constructor() : this("")
+
+    fun changeName(name: String) {
+        this.username = name
+    }
 }
