@@ -49,6 +49,6 @@ class JpaSomeController(
 
     @PostMapping("/tx-test-with-query")
     fun tx_test_with_query() {
-        txWithQueryService.tx_test_1()
+        txWithQueryService.method1()
     }
 }

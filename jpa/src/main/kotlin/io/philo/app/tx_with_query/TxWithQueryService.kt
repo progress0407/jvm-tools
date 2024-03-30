@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional
 class TxWithQueryService(private val personRepository: PersonRepository) {
 
     @Transactional
-    fun tx_test_1() {
+    fun method1() {
 
         val personEntity = PersonEntity("John Doe")
         personRepository.save(personEntity)
 
-        internal_tx_test_1(personEntity.id!!)
+        internalMethod1(personEntity.id!!)
     }
 
     @Transactional
-    fun internal_tx_test_1(id: Long) {
+    fun internalMethod1(id: Long) {
 
         val foundMember = personRepository.findById(id).orElse(null)
         foundMember.changeName("Updated Jane Doe")
