@@ -7,13 +7,14 @@ import java.util.*
 class PersonEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
     @Column(nullable = false)
     var name: String = "",
 ) {
 
+//    constructor(name: String) : this(id = Random().nextLong(1, 10_000), name = name)
     constructor(name: String) : this(id = null, name = name)
 
     constructor() : this(name = UUID.randomUUID().toString())

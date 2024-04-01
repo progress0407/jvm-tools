@@ -17,3 +17,5 @@ spring:
         format_sql: true
 #        dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
+
+logging.level.org.hibernate.orm.jdbc.bind: trace
