@@ -1,7 +1,9 @@
 package philo.mjcoding.job
 
+import mu.KotlinLogging
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
+import org.springframework.batch.core.configuration.annotation.JobScope
 import org.springframework.batch.core.configuration.annotation.StepScope
 import org.springframework.batch.core.job.builder.JobBuilder
 import org.springframework.batch.core.repository.JobRepository
@@ -18,14 +20,17 @@ class HelloJobCodingConfig(
     private val transactionManager: AbstractPlatformTransactionManager
 ) {
 
+    private val log = KotlinLogging.logger { }
+
     @Bean
     fun helloWorldJob(): Job {
+        log.info("hello world spring batch job !!")
         return JobBuilder("helloWorldJob", jobRepository)
             .start(helloWorldStep())
             .build()
     }
 
-    @StepScope
+    @JobScope
     @Bean
     fun helloWorldStep(): Step {
         return StepBuilder("helloWorldStep", jobRepository)
@@ -37,7 +42,7 @@ class HelloJobCodingConfig(
     @Bean
     fun helloWorldStepTasklet(): Tasklet {
         return Tasklet { _, _ ->
-            println("hello world spring batch")
+            log.info("hello world spring batch tasklet !!")
             RepeatStatus.FINISHED
         }
     }

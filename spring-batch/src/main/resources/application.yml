@@ -1,13 +1,29 @@
 spring:
+  profiles.active: mysql
   batch:
     job:
 #      name: ${job.name:NONE}
       name: "helloWorldJob"
-#  jdbc:
-#    initialize-schema: ALWAYS
-#  datasource:
-#    url:
-#--spring:
-#  batch:
-#    job:
-#      name=helloWorldJob:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+spring:
+  config.activate.on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/test-db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+---
+spring:
+  config.activate.on-profile: h2
