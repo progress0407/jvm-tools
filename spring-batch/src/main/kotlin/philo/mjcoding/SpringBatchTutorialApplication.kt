@@ -11,20 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled
 @EnableBatchProcessing
 @SpringBootApplication
 @EnableScheduling
-class SpringBatchTutorialApplication {
+class SpringBatchTutorialApplication
 
-    private val log = KotlinLogging.logger { }
-
-    @Scheduled(cron = "*/5 * * * * ?")
-    @SchedulerLock(
-        name = "TaskScheduler_scheduledTask",
-        lockAtLeastFor = "PT5M",
-        lockAtMostFor = "PT14M"
-    )
-    fun run() {
-        log.info { "run " }
-    }
-}
 
 fun main() {
     SpringApplication.run(SpringBatchTutorialApplication::class.java)
