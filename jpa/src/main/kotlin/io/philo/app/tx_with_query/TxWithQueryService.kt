@@ -14,11 +14,11 @@ class TxWithQueryService(private val personRepository: PersonRepository) {
         val personEntity = PersonEntity("John Doe")
         personRepository.save(personEntity)
 
-        internalMethod1(personEntity.id!!)
+        method2(personEntity.id!!)
     }
 
     @Transactional
-    private fun internalMethod1(id: Long) {
+    private fun method2(id: Long) {
 
         val foundMember = personRepository.findById(id).orElse(null)
 //        throw RuntimeException("Rollback")
