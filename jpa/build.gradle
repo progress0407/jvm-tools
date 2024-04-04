@@ -8,5 +8,5 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
 
-//    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:${version}")
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
 }

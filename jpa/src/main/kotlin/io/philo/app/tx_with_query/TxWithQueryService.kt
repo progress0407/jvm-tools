@@ -18,7 +18,7 @@ class TxWithQueryService(private val personRepository: PersonRepository) {
     }
 
     @Transactional
-    private fun method2(id: Long) {
+    fun method2(id: Long) {
 
         val foundMember = personRepository.findById(id).orElse(null)
 //        throw RuntimeException("Rollback")
